@@ -1,32 +1,27 @@
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint-friendly-formatter');
 
 module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, '../'),
-  entry: [
-    './src/index.js',
-  ],
+  entry: path.resolve('src/index.js'),
   output: {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve('dist'),
   },
   devtool: 'cheap-module-eval-source-map',
   resolve: {
-    extensions: ['.js', '.json', '.less'],
+    extensions: ['.js', '.json', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, '../src'),
+      '@': path.resolve('src'),
     },
   },
   module: {
     noParse: [
-      /moment/
+      /moment/,
     ],
     rules: [
       {
@@ -40,7 +35,7 @@ module.exports = {
             loader: 'eslint-loader',
           },
         ],
-        include: path.resolve(__dirname, '../src'),
+        include: path.resolve('src'),
       },
       {
         test: /\.(js|jsx)/,
@@ -51,7 +46,7 @@ module.exports = {
             cacheDirectory: true,
           },
         },
-        include: path.resolve(__dirname, '../src'),
+        include: path.resolve('src'),
       },
       {
         test: /\.(css|less)$/,
@@ -114,7 +109,9 @@ module.exports = {
     ],
   },
   plugins: [
+    // 热更新模块替换
     new webpack.HotModuleReplacementPlugin(),
+    // html插件
     new HtmlWebPackPlugin({
       template: './public/index.html',
       filename: 'index.html',

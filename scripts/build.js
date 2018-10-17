@@ -31,8 +31,8 @@ fs.emptyDir(path.resolve(__dirname, '../dist')).then(() => {
         colors: true,
         modules: false,
         children: false,
-        chunks: false,
-        chunkModules: false,
+        version: false,
+        entrypoints: false
       })}\n\n`,
     );
 

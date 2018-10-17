@@ -1,8 +1,10 @@
-import getAsyncComponent from '@/components/AsyncComponent';
+import getDynamicComponent from '@/components/DynamicComponent';
 
+// 异步加载
 const layoutImport = file => () => import(`../layouts/${file}`);
 const routerImport = file => () => import(`../routes/${file}`);
 
+// 同步加载
 // import BasicLayout from '../layouts/BasicLayout';
 // import Counter from '../routes/Counter';
 // import Guest from '../routes/Guest';
@@ -14,28 +16,25 @@ const routerMap = {
     // icon: Sting
     // authority: String | Array
     // hidden: Boolean
-    component: getAsyncComponent(layoutImport('BasicLayout')),
+    component: getDynamicComponent(layoutImport('BasicLayout')),
     // component: BasicLayout,
     children: {
       '/counter': {
         name: 'counter',
         icon: 'form',
-        component: getAsyncComponent(routerImport('Counter')),
-        // component: Counter,
+        component: getDynamicComponent(routerImport('Counter')),
       },
       '/guest': {
         name: 'guest',
         icon: 'star-o',
         authority: 'guest',
-        component: getAsyncComponent(routerImport('Guest')),
-        // component: Guest,
+        component: getDynamicComponent(routerImport('Guest')),
       },
       '/admin': {
         name: 'admin',
         icon: 'heart-o',
         authority: 'admin',
-        component: getAsyncComponent(routerImport('Admin')),
-        // component: Admin,
+        component: getDynamicComponent(routerImport('Admin')),
       },
     },
   },

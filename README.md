@@ -3,7 +3,7 @@
 ## 项目介绍
 
 一个基于react、antd的适合二次开发的后台管理系统。
-主要是学习webpack4的配置，和与react、redux的搭配使用（webpack的配置参考了 `create-react-app` 和 `vue-element-admin` ，布局layout参考了 `ant-design-pro`）。
+webpack的配置使用的是 `trutle-webpack-tool` ，布局layout参考了 `ant-design-pro`。
 
 #### 功能
 

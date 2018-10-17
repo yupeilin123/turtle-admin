@@ -1,7 +1,11 @@
 import React from 'react';
 
-export default function getAsyncComponent(load) {
-  return class AsyncComponent extends React.PureComponent {
+/**
+ * @param {functoin} load
+ * eg. getAsyncComponent(() => import('../xxx))
+ */
+export default function getDynamicComponent(load) {
+  return class DynamicComponent extends React.PureComponent {
     constructor(props) {
       super(props);
       this.state = {

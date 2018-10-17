@@ -5,22 +5,25 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 module.exports = {
   mode: 'production',
   context: path.resolve(__dirname, '../'),
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+  },
   output: {
     filename: 'js/[name].[chunkhash:8].js',
     chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
     path: path.resolve(__dirname, '../dist'),
-    // publicPath: '/'
   },
   devtool: 'false',
   resolve: {
-    extensions: ['.js', '.json', '.less'],
+    extensions: ['.js', '.json', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, '../src'),
+      '@': path.resolve('src'),
     },
   },
   module: {
@@ -34,7 +37,7 @@ module.exports = {
             cacheDirectory: true,
           },
         },
-        include: path.resolve(__dirname, '../src'),
+        include: path.resolve('src'),
       },
       {
         test: /\.html$/,
@@ -92,14 +95,25 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      // svg
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.svg$/,
+        loader: 'svg-url-loader',
+        options: {
+          limit: 10000,
+          noquotes: true,
+        },
+      },
+      // image
+      {
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
           name: 'img/[name].[hash:8].[ext]',
         },
       },
+      // font
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
@@ -111,11 +125,17 @@ module.exports = {
     ],
   },
   plugins: [
+    // 提取css分离到其他文件
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+    }),
     new HtmlWebPackPlugin({
       template: './public/index.html',
       filename: 'index.html',
       favicon: './public/favicon.ico',
       inject: true,
+      inlineSource: 'runtime~.+\\.js',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -128,12 +148,31 @@ module.exports = {
         minifyURLs: true,
       },
     }),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].css',
-    }),
+    // 压缩优化css
+    new OptimizeCSSAssetsPlugin(),
+    // 生成mainifets
+    new ManifestPlugin(),
+    // 搭配HtmlWebpackPlugin的inlineSource来使用，用来内联资源
+    new InlineSourcePlugin(),
   ],
   optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJSPlugin({
+        uglifyOptions: {
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        sourceMap: false,
+        cache: true,
+        parallel: true,
+      }),
+    ],
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
@@ -157,24 +196,8 @@ module.exports = {
         },
       },
     },
-    runtimeChunk: 'single',
-    minimizer: [
-      new UglifyJSPlugin({
-        uglifyOptions: {
-          mangle: {
-            safari10: true,
-          },
-          output: {
-            comments: false,
-            ascii_only: true,
-          },
-        },
-        sourceMap: false,
-        cache: true,
-        parallel: true,
-      }),
-      new OptimizeCSSAssetsPlugin(),
-    ],
+    runtimeChunk: true,
+    concatenateModules: true,
   },
   node: {
     dgram: 'empty',
