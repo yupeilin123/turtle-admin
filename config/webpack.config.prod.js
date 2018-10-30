@@ -1,9 +1,9 @@
 'use strict';
 
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
@@ -28,6 +28,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // react js
       {
         test: /\.(js|jsx)/,
         exclude: /node_modules/,
@@ -39,6 +40,7 @@ module.exports = {
         },
         include: path.resolve('src'),
       },
+      // html
       {
         test: /\.html$/,
         use: [
@@ -48,6 +50,7 @@ module.exports = {
           },
         ],
       },
+      // css
       {
         test: /\.(css|less)$/,
         use: [
@@ -130,23 +133,13 @@ module.exports = {
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].chunk.css',
     }),
-    new HtmlWebPackPlugin({
+    // html
+    new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
       favicon: './public/favicon.ico',
       inject: true,
       inlineSource: 'runtime~.+\\.js',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyURLs: true,
-      },
     }),
     // 压缩优化css
     new OptimizeCSSAssetsPlugin(),
@@ -155,38 +148,42 @@ module.exports = {
     // 搭配HtmlWebpackPlugin的inlineSource来使用，用来内联资源
     new InlineSourcePlugin(),
   ],
+  // 优化代码
   optimization: {
+    // 开启压缩，使用UglifyjsPlugin
     minimize: true,
     minimizer: [
-      new UglifyJSPlugin({
+      new UglifyJsPlugin({
         uglifyOptions: {
-          mangle: {
-            safari10: true,
-          },
           output: {
+            // 移除注释
             comments: false,
-            ascii_only: true,
           },
         },
-        sourceMap: false,
+        // 启用文件缓存
         cache: true,
+        // 开启多进程提高构建速度
         parallel: true,
       }),
     ],
+    // 提取公共代码
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
+        // 基础类库
         libs: {
           name: 'chunk-libs',
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
           chunks: 'initial',
         },
+        // UI库
         antdUI: {
           name: 'chunk-antd',
           priority: 20,
           test: /[\\/]node_modules[\\/]antd[\\/]/,
         },
+        // 自定义组件
         commons: {
           name: 'chunk-comomns',
           test: /src\/components/,

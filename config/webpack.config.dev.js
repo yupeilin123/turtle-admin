@@ -14,7 +14,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.js', '.json'],
     alias: {
       '@': path.resolve('src'),
     },
@@ -23,6 +23,7 @@ module.exports = {
     noParse: [
       /moment/,
     ],
+    // elsint
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -37,6 +38,7 @@ module.exports = {
         ],
         include: path.resolve('src'),
       },
+      // react js
       {
         test: /\.(js|jsx)/,
         exclude: /node_modules/,
@@ -48,6 +50,7 @@ module.exports = {
         },
         include: path.resolve('src'),
       },
+      // css
       {
         test: /\.(css|less)$/,
         use: [
@@ -90,6 +93,7 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      // image
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -98,6 +102,7 @@ module.exports = {
           name: 'img/[name].[ext]',
         },
       },
+      // font-family
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',

@@ -3,7 +3,6 @@
 ## 项目介绍
 
 一个基于react、antd的适合二次开发的后台管理系统。
-webpack的配置使用的是 `trutle-webpack-tool` ，布局layout参考了 `ant-design-pro`。
 
 #### 功能
 
