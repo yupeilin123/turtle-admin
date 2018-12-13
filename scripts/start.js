@@ -5,6 +5,8 @@ process.on('unhandledRejection', err => {
 });
 
 const merge = require('webpack-merge');
+const chalk = require('chalk');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const devConfig = require('../config/webpack.config.dev');
 
@@ -27,7 +29,7 @@ const serverConfig = merge(devConfig, {
     overlay: false,
     port: port,
     proxy: {},
-    progress: true,
+    progress: false,
     publicPath: '/',
     quiet: true,
     watchOptions: {
@@ -37,6 +39,11 @@ const serverConfig = merge(devConfig, {
 });
 
 serverConfig.plugins.push(
+  new ProgressBarPlugin({
+    format: '  start server [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
+    clear: false,
+    summaryContent: false
+  }),
   /**
    * Friendly-errors-webpack-plugin recognizes certain classes of webpack errors and cleans 
    * aggregates and prioritizes them to provide a better Developer Experience.
