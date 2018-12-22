@@ -6,7 +6,7 @@ class Counter extends React.PureComponent {
   handleIncrement = () => {
     const { count } = this.props.counter;
     this.props.dispatch({
-      type: 'setState',
+      type: 'counter/setState',
       payload: {
         count: count + 1,
       },
@@ -16,7 +16,7 @@ class Counter extends React.PureComponent {
   handleDecrement = () => {
     const { count } = this.props.counter;
     this.props.dispatch({
-      type: 'setState',
+      type: 'counter/setState',
       payload: {
         count: count - 1,
       },
@@ -26,7 +26,7 @@ class Counter extends React.PureComponent {
   handleAsyncIncrement = () => {
     const { count } = this.props.counter;
     this.props.dispatch({
-      type: 'asyncOperation',
+      type: 'counter/asyncOperation',
       payload: {
         count: count + 1,
       },
@@ -36,7 +36,7 @@ class Counter extends React.PureComponent {
   handleAsyncDecrement = () => {
     const { count } = this.props.counter;
     this.props.dispatch({
-      type: 'asyncOperation',
+      type: 'counter/asyncOperation',
       payload: {
         count: count - 1,
       },

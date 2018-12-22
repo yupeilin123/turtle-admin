@@ -11,7 +11,7 @@ class TurtleLogin extends React.PureComponent {
   }
 
   handleLogin = values => {
-    this.props.dispatch({ type: 'login', payload: { ...values } });
+    this.props.dispatch({ type: 'login/login', payload: { ...values } });
   }
 
   render() {

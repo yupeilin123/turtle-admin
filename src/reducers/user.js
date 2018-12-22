@@ -3,4 +3,7 @@ export default {
   state: {
     currentUser: {},
   },
+  setState: (state, action) => {
+    return { ...state, ...action.payload };
+  },
 };

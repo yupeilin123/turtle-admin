@@ -25,7 +25,7 @@ class BasicLayout extends React.PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'getCurrentUser',
+      type: 'user/getCurrentUser',
       payload: {
         currentUser: {
           name: 'turtle',
@@ -40,7 +40,7 @@ class BasicLayout extends React.PureComponent {
 
   handleClicktAvatarMenu = ({ key }) => {
     if (key === 'logout') {
-      this.props.dispatch({ type: 'logout' });
+      this.props.dispatch({ type: 'login/logout' });
     }
   }
 

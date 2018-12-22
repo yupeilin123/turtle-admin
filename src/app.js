@@ -19,7 +19,7 @@ const history = createHistory();
 const store = configStore(history);
 store.runSaga();
 
-function RouterConfig() {
+function AppConfig() {
   return (
     <LocaleProvider>
       <Provider store={store}>
@@ -39,4 +39,4 @@ function RouterConfig() {
   );
 }
 
-export default RouterConfig;
+export default AppConfig;
