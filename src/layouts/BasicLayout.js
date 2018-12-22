@@ -17,6 +17,7 @@ const avatarMenu = [{
 }];
 const siderTitle = 'turtle admin';
 const NotFound = () => <div>404</div>;
+const routerComp = getRouterData(routerData);
 
 class BasicLayout extends React.PureComponent {
   state = {
@@ -42,6 +43,15 @@ class BasicLayout extends React.PureComponent {
     if (key === 'logout') {
       this.props.dispatch({ type: 'login/logout' });
     }
+  }
+
+  redirectData = router => {
+    for (let key = 0; key < router.length; key += 1) {
+      if (router[key].path.match(/\//g).length > 1) {
+        return router[key].path;
+      }
+    }
+    return 'counter';
   }
 
   render() {
@@ -70,9 +80,9 @@ class BasicLayout extends React.PureComponent {
           </Header>
           <Content style={{ margin: '20px 24px 0', height: '100%' }}>
             <Switch>
-              <Redirect exact from='/' to='/counter' />
+              <Redirect exact from='/' to={this.redirectData(routerComp)} />
               {
-                getRouterData(routerData).map(item => (
+                routerComp.map(item => (
                   <Route
                     key={item.key}
                     path={item.path}
