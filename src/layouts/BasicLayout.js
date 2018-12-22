@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
 import { connect } from 'react-redux';
 import GlobalHeader from '@/components/GlobalHeader';

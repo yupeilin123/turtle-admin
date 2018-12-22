@@ -1,12 +1,26 @@
 .sider {
   min-height: 100vh;
   width: 256px;
+  background: #343f51;
+  :global {
+    .ant-menu-inline .ant-menu-item {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .ant-menu-submenu .ant-menu-inline .ant-menu-item {
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    .ant-menu-dark .ant-menu-inline .ant-menu-sub {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45) inset !important;
+    }
+  }
   .logo {
     height: 64px;
     line-height: 64px;
     position: relative;
     transition: all 0.3s;
-    background: #002140;
+    background: #343f51;
     overflow: hidden;
     padding-left: 24px;
     img {

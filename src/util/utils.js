@@ -1,18 +1,18 @@
-export function getMenuData(routerMap) {
+export function getMenuData(routerMap, parentPath = '') {
   let routes = routerMap;
   if (routerMap['/']) {
     routes = routerMap['/'].children;
   }
   const menu = Object.keys(routes).map(path => {
     const result = {
-      path,
+      path: parentPath + path,
       name: routes[path].name,
       icon: routes[path].icon,
       authority: routes[path].authority,
       hidden: routes[path].hidden,
     };
     if (routes[path].children) {
-      result.children = getMenuData(routes[path].children);
+      result.children = getMenuData(routes[path].children, path);
     }
     return result;
   });
@@ -25,18 +25,18 @@ export function getRouterData(routerMap) {
   return routes;
 }
 
-function flatten(routerMap) {
+function flatten(routerMap, parentPath = '') {
   let routes = {};
   Object.keys(routerMap).forEach(path => {
     routes[path] = {
-      path,
+      path: parentPath + path,
       key: path,
       name: routerMap[path].name,
       exact: routerMap[path].exact || true,
       component: routerMap[path].component,
     };
     if (routerMap[path].children) {
-      routes = { ...routes, ...flatten(routerMap[path].children) };
+      routes = { ...routes, ...flatten(routerMap[path].children, path === '/' ? '' : path) };
     }
   });
   return routes;

@@ -1,5 +1,8 @@
 import getDynamicComponent from '@/components/DynamicComponent';
 
+// 同步加载
+// import BasicLayout from '../layouts/BasicLayout';
+
 // 异步加载
 const layoutImport = file => () => import(`../layouts/${file}`);
 const routerImport = file => () => import(`../routes/${file}`);
@@ -16,6 +19,7 @@ const routerMap = {
     // icon: Sting
     // authority: String | Array
     // hidden: Boolean
+    exact: true,
     component: getDynamicComponent(layoutImport('BasicLayout')),
     // component: BasicLayout,
     children: {
