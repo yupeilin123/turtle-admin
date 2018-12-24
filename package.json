@@ -8,8 +8,7 @@
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "analyze": "cross-env ANALYZE=true node scripts/build.js",
     "lint": "eslint --ext .js src",
-    "lint:fix": "eslint --fix --ext .js src",
-    "publish": "scp -r dist root@47.107.117.180:/root/turtle-admin"
+    "lint:fix": "eslint --fix --ext .js src"
   },
   "keywords": [
     "ant-design",
