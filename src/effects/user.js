@@ -1,5 +1,4 @@
-import { delay } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { delay, call, put } from 'redux-saga/effects';
 
 export default {
   namespace: 'user',
