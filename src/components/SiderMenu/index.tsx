@@ -7,7 +7,21 @@ import { getAuthority } from '@/util/authority';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-function searchOpenSubMenu(path) {
+interface SiderMenuProps {
+  collapsed: boolean,
+  menuData: Array<number>, 
+  logo: string, 
+  siderTitle: string,
+  location: object,
+  dispatch: Function,
+}
+
+interface SiderMenuState {
+  openKeys: Array<number>,
+  selectedKeys: Array<number>,
+}
+
+function searchOpenSubMenu(path: string) {
   const transPath = path.slice(1).split('/');
   const openKeys = [];
   let len = transPath.length;
@@ -24,14 +38,13 @@ function searchOpenSubMenu(path) {
   return openKeys;
 }
 
-
-export default class SiderMenu extends React.PureComponent {
+export default class SiderMenu extends React.PureComponent<SiderMenuProps, SiderMenuState> {
   state = {
     openKeys: [],
     selectedKeys: [],
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps: SiderMenuProps, prevState: SiderMenuState) {
     if (nextProps.location.pathname !== prevState.selectedKeys[0]) {
       return {
         openKeys: searchOpenSubMenu(nextProps.location.pathname),
@@ -41,7 +54,7 @@ export default class SiderMenu extends React.PureComponent {
     return null;
   }
 
-  handleCreateMenu = menuData => {
+  handleCreateMenu = (menuData: Array<number>) => {
     if (!menuData) {
       return [];
     }
@@ -51,9 +64,9 @@ export default class SiderMenu extends React.PureComponent {
       .filter(item => item);
   }
 
-  handleFilterAuthorityMenu = item => !item.authority || item.authority === getAuthority()
+  handleFilterAuthorityMenu = (item: object) => !item.authority || item.authority === getAuthority()
 
-  getSubMenuOrMenuItem = item => {
+  getSubMenuOrMenuItem = (item: object) => {
     if (item.children && item.children.length > 0) {
       return this.handleCreateSubMenu(item);
     }

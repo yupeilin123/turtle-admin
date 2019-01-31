@@ -3,9 +3,13 @@ import { put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { setAuthority } from '@/util/authority';
 
+interface PayloadType {
+  payload: any,
+}
+
 export default {
   namespace: 'login',
-  * login({ payload }) {
+  * login({ payload }: PayloadType) {
     const { username, password } = payload;
     if ((username === 'admin' && password === '888888') || (username === 'guest' && password === 'guest')) {
       const authority = username;

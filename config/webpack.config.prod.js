@@ -21,7 +21,7 @@ module.exports = {
   },
   devtool: 'false',
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.ts', '.tsx','.js','.json'],
     alias: {
       '@': path.resolve('src'),
     },

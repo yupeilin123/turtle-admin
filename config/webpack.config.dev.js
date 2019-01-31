@@ -6,7 +6,7 @@ const eslintFormatter = require('eslint-friendly-formatter');
 module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, '../'),
-  entry: path.resolve('src/index.js'),
+  entry: path.resolve('src/index.tsx'),
   output: {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
@@ -15,7 +15,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.ts', '.tsx','.js','.json'],
     alias: {
       '@': path.resolve('src'),
     },
@@ -26,6 +26,12 @@ module.exports = {
     ],
     // elsint
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'awesome-typescript-loader',
+        include: path.resolve('src'),
+      },
       {
         test: /\.(js|jsx)$/,
         enforce: 'pre',

@@ -4,10 +4,17 @@ import styles from './index.less';
 
 const FormItem = Form.Item;
 
-class TurtleLogin extends React.PureComponent {
-  handleSubmit = e => {
+interface LoginProps {
+  form: object,
+  username: string,
+  password: string,
+  onLogin?: Function
+}
+
+class Login extends React.Component<LoginProps> {
+  handleSubmit = (e: any) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err: object, values: object) => {
       if (!err) {
         this.props.onLogin(values);
       }
@@ -45,4 +52,4 @@ class TurtleLogin extends React.PureComponent {
   }
 }
 
-export default Form.create()(TurtleLogin);
+export default Form.create()(Login);

@@ -9,6 +9,25 @@ import routerData from '@/common/router';
 import logo from '@/assets/logo.png';
 import { getMenuData, getRouterData } from '../util/utils';
 
+interface BasicLayoutProps {
+  dispatch: Function,
+  location: object,
+  user: object
+}
+
+interface BasicLayoutState {
+  collapsed: boolean,
+}
+
+interface AvatatMenuType {
+  key: string,
+}
+
+interface RouterType {
+  [index: number]: string,
+  length: number,
+}
+
 const { Header, Footer, Content } = Layout;
 const avatarMenu = [{
   title: '退出登录',
@@ -19,7 +38,7 @@ const siderTitle = 'turtle admin';
 const NotFound = () => <div>404</div>;
 const routerComp = getRouterData(routerData);
 
-class BasicLayout extends React.PureComponent {
+class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState> {
   state = {
     collapsed: false,
   }
@@ -39,13 +58,13 @@ class BasicLayout extends React.PureComponent {
     this.setState(prevState => ({ collapsed: !prevState.collapsed }));
   }
 
-  handleClicktAvatarMenu = ({ key }) => {
+  handleClicktAvatarMenu = ({ key }: AvatatMenuType) => {
     if (key === 'logout') {
       this.props.dispatch({ type: 'login/logout' });
     }
   }
 
-  redirectData = router => {
+  redirectData = (router: RouterType) => {
     for (let key = 0; key < router.length; key += 1) {
       if (router[key].path.match(/\//g).length > 1) {
         return router[key].path;

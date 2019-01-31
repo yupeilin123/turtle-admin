@@ -1,8 +1,22 @@
 import React from 'react';
+import { Dispatch } from 'redux';
 import { Button, Card } from 'antd';
 import { connect } from 'react-redux';
 
-class Counter extends React.PureComponent {
+interface StateType {
+  counter: Object
+}
+
+interface Counter {
+  count: number
+}
+
+interface CounterProps {
+  dispatch: Dispatch,
+  counter: Counter,
+}
+
+class Counter extends React.PureComponent<CounterProps> {
   handleIncrement = () => {
     const { count } = this.props.counter;
     this.props.dispatch({
@@ -62,4 +76,8 @@ class Counter extends React.PureComponent {
   }
 }
 
-export default connect(({ counter }) => ({ counter }))(Counter);
+const mapStateToProps = (state: StateType) => ({
+  counter: state.counter
+})
+
+export default connect(mapStateToProps)(Counter);

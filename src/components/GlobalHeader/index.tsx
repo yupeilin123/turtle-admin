@@ -2,7 +2,16 @@ import React from 'react';
 import { Icon, Avatar, Menu, Dropdown } from 'antd';
 import styles from './index.less';
 
-export default class GlobalHeader extends React.PureComponent {
+interface GlobalHeaderProps {
+  collapsed: boolean,
+  avatarMenu: Array<number>,
+  onClickAvatarMenu: Function,
+  onCollapseMenu: Function,
+  logo: string,
+  currentUser: object
+}
+
+export default class GlobalHeader extends React.PureComponent<GlobalHeaderProps> {
   render() {
     const {
       collapsed,

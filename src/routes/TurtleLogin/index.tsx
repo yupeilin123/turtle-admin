@@ -4,13 +4,16 @@ import Login from '@/components/Login';
 import logo from '@/assets/logo.png';
 import styles from './index.less';
 
-class TurtleLogin extends React.PureComponent {
-  constructor(props) {
+interface TurtleLoginProps {
+  dispatch: Function
+}
+class TurtleLogin extends React.PureComponent<TurtleLoginProps> {
+  constructor(props: TurtleLoginProps) {
     super(props);
     localStorage.clear();
   }
 
-  handleLogin = values => {
+  handleLogin = (values: object) => {
     this.props.dispatch({ type: 'login/login', payload: { ...values } });
   }
 

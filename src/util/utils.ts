@@ -1,4 +1,4 @@
-export function getMenuData(routerMap, parentPath = '') {
+export function getMenuData(routerMap: Array<number>, parentPath = '') {
   let routes = routerMap;
   if (routerMap['/']) {
     routes = routerMap['/'].children;

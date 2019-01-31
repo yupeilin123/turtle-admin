@@ -4,8 +4,8 @@ import getDynamicComponent from '@/components/DynamicComponent';
 // import BasicLayout from '../layouts/BasicLayout';
 
 // 异步加载
-const layoutImport = file => () => import(`../layouts/${file}`);
-const routerImport = file => () => import(`../routes/${file}`);
+const layoutImport = (file: string) => () => import(`../layouts/${file}`);
+const routerImport = (file: string) => () => import(`../routes/${file}`);
 
 // 同步加载
 // import BasicLayout from '../layouts/BasicLayout';
