@@ -3,10 +3,6 @@ import { Dispatch } from 'redux';
 import { Button, Card } from 'antd';
 import { connect } from 'react-redux';
 
-interface StateType {
-  counter: Object
-}
-
 interface Counter {
   count: number
 }
@@ -76,7 +72,7 @@ class Counter extends React.PureComponent<CounterProps> {
   }
 }
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: any) => ({
   counter: state.counter
 })
 

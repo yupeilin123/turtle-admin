@@ -10,8 +10,8 @@ import createHistory from 'history/createBrowserHistory';
 
 import configStore from './store';
 
-// import AuthorityRoute from './components/AuthorityRoute';
-// import BasicLayout from './layouts/BasicLayout';
+import AuthorityRoute from './components/AuthorityRoute';
+import BasicLayout from './layouts/BasicLayout';
 import LoginLayout from './layouts/LoginLayout';
 
 const history = createHistory();
@@ -26,12 +26,12 @@ function AppConfig() {
         <ConnectedRouter history={history}>
           <Switch>
             <Route path='/login' component={LoginLayout} />
-            {/* <AuthorityRoute
+            <AuthorityRoute
               path='/'
-              render={(props: object) => <BasicLayout {...props} />}
+              render={props => <BasicLayout {...props} />}
               authority={['admin', 'guest']}
               redirectPath='/login'
-            /> */}
+            />
           </Switch>
         </ConnectedRouter>
       </Provider>

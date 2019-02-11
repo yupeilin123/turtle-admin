@@ -1,17 +1,28 @@
 import React from 'react';
 import { Form, Input, Button, Icon } from 'antd';
-import styles from './index.less';
+import { FormComponentProps } from 'antd/lib/form';
+// import styles from './index.less';
+const styles = require('./index.less')
 
 const FormItem = Form.Item;
 
-interface LoginProps {
-  form: object,
-  username: string,
-  password: string,
-  onLogin?: Function
+interface usernameType {
+  id: string,
+  rules: Array<any>
 }
 
-class Login extends React.Component<LoginProps> {
+interface passwordType {
+  id: string,
+  rules: Array<any>
+}
+
+interface Props extends FormComponentProps{
+  username: usernameType,
+  password: passwordType,
+  onLogin: Function
+}
+
+class Login extends React.Component<Props> {
   handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.form.validateFields((err: object, values: object) => {

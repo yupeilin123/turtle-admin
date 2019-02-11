@@ -7,7 +7,7 @@ interface OptionsType {
 }
 
 export default function request(url: string, options: OptionsType) {
-  const newOptions = { ...options };
+  const newOptions: any = { ...options };
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {

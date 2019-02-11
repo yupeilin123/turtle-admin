@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Route, Redirect } from 'react-router';
 import { getAuthority } from '@/util/authority';
 
-interface AuthorityRouteProps {
+interface Props {
   path: string,
-  render: Function,
   redirectPath: string,
-  authority: Array<number> | string,
+  authority?: Array<object> | string,
+  render: () => ReactNode,
 }
 
-interface AuthorityRouteState {
+interface State {
   isAuthority: null | boolean
 }
 
-export default class AuthorityRoute extends React.PureComponent<AuthorityRouteProps, AuthorityRouteState> {
-  constructor(props: AuthorityRouteProps) {
+export default class AuthorityRoute extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       isAuthority: null,
     };
   }
 
-  static getDerivedStateFromProps(nextProps: AuthorityRouteProps) {
+  static getDerivedStateFromProps(nextProps: Props) {
     let isAuthority = null;
     if (Array.isArray(nextProps.authority)) {
       if (nextProps.authority.some(_ => _ === getAuthority())) {

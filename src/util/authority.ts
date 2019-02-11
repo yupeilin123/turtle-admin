@@ -1,7 +1,7 @@
-export function getAuthority() {
+export function getAuthority(): any {
   return localStorage.getItem('turtle-admin-authoriry');
 }
 
 export function setAuthority(authoriry: string): void {
-  return localStorage.setItem('turtle-admin-authoriry', authoriry);
+  localStorage.setItem('turtle-admin-authoriry', authoriry);
 }

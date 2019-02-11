@@ -1,37 +1,41 @@
-import React from 'react';
+// import React, { ReactNode } from 'react';
 
-interface DynamicComponentProps {
+// interface ResType {
+//   default: ReactNode
+// }
 
-}
+// interface Props {
 
-interface DynamicComponentState {
-  Component: null
-}
+// }
 
-/**
- * @param {functoin} load
- * eg. getAsyncComponent(() => import('../xxx))
- */
-export default function getDynamicComponent(load: Function) {
-  return class DynamicComponent extends React.PureComponent<DynamicComponentProps, DynamicComponentState> {
-    constructor(props: DynamicComponentProps) {
-      super(props);
-      this.state = {
-        Component: null,
-      };
-    }
+// interface State {
+//   Component: null | ReactNode
+// }
 
-    componentDidMount() {
-      load().then(({ default: component }) => {
-        this.setState({
-          Component: component,
-        });
-      });
-    }
+// /**
+//  * @param {functoin} load
+//  * eg. getAsyncComponent(() => import('../xxx))
+//  */
+// export default function getDynamicComponent(load: Function) {
+//   return class DynamicComponent extends React.PureComponent<Props, State> {
+//     constructor(props: Props) {
+//       super(props);
+//       this.state = {
+//         Component: null,
+//       };
+//     }
 
-    render() {
-      const { Component } = this.state;
-      return Component ? <Component /> : null;
-    }
-  };
-}
+//     componentDidMount() {
+//       load().then((res: ResType) => {
+//         this.setState({
+//           Component: res.default
+//         });
+//       });
+//     }
+
+//     render() {
+//       const { Component } = this.state;
+//       return Component ? <Component /> : null;
+//     }
+//   };
+// }

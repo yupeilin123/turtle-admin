@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-import styles from './index.less';
+// import styles from './index.less';
+const styles = require('./index.less');
 import { getAuthority } from '@/util/authority';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
+
+interface locationType {
+  pathname: string,
+}
 
 interface SiderMenuProps {
   collapsed: boolean,
   menuData: Array<number>, 
   logo: string, 
   siderTitle: string,
-  location: object,
+  location: locationType,
   dispatch: Function,
+}
+
+interface selectedKeysType {
+  [index: number]: string,
 }
 
 interface SiderMenuState {
   openKeys: Array<number>,
-  selectedKeys: Array<number>,
+  selectedKeys: selectedKeysType,
+}
+
+interface MenuItemTypes {
+  path: string,
+  icon?: string,
+  name?: string,
+  children: Array<any>,
+  authority?: string,
 }
 
 function searchOpenSubMenu(path: string) {
@@ -54,7 +71,7 @@ export default class SiderMenu extends React.PureComponent<SiderMenuProps, Sider
     return null;
   }
 
-  handleCreateMenu = (menuData: Array<number>) => {
+  handleCreateMenu = (menuData: Array<any>) => {
     if (!menuData) {
       return [];
     }
@@ -64,16 +81,16 @@ export default class SiderMenu extends React.PureComponent<SiderMenuProps, Sider
       .filter(item => item);
   }
 
-  handleFilterAuthorityMenu = (item: object) => !item.authority || item.authority === getAuthority()
+  handleFilterAuthorityMenu = (item: MenuItemTypes) => !item.authority || item.authority === getAuthority()
 
-  getSubMenuOrMenuItem = (item: object) => {
+  getSubMenuOrMenuItem = (item: MenuItemTypes) => {
     if (item.children && item.children.length > 0) {
       return this.handleCreateSubMenu(item);
     }
     return this.handleCreateMenuItem(item);
   }
 
-  handleCreateMenuItem = item => (
+  handleCreateMenuItem = (item: MenuItemTypes) => (
     <Menu.Item key={item.path}>
       <Link to={item.path} replace={item.path === this.props.location.pathname}>
         {item.icon && <Icon type={item.icon} />}
@@ -82,7 +99,7 @@ export default class SiderMenu extends React.PureComponent<SiderMenuProps, Sider
     </Menu.Item>
   )
 
-  handleCreateSubMenu = item => (
+  handleCreateSubMenu = (item: MenuItemTypes) => (
     <SubMenu
       key={item.path}
       title={(
@@ -96,7 +113,7 @@ export default class SiderMenu extends React.PureComponent<SiderMenuProps, Sider
     </SubMenu>
   )
 
-  handleOpenSubMenu = openKeys => {
+  handleOpenSubMenu = (openKeys: Array<any>) => {
     this.setState({
       openKeys: openKeys.length ? openKeys : [],
     });

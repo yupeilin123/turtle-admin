@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Login from '@/components/Login';
-import logo from '@/assets/logo.png';
-import styles from './index.less';
+const logo = require('@/assets/logo.png')
+const styles = require('./index.less')
+// import logo from '@/assets/logo.png';
+// import styles from './index.less';
 
 interface TurtleLoginProps {
   dispatch: Function
