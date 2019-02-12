@@ -1,4 +1,4 @@
-import { delay, call, put } from 'redux-saga/effects';
+import { delay, put } from 'redux-saga/effects';
 
 interface PayloadType {
   payload: any,
@@ -7,7 +7,7 @@ interface PayloadType {
 export default {
   namespace: 'user',
   * getCurrentUser({ payload }: PayloadType) {
-    yield call(delay, 300);
+    yield delay(1000);
     yield put({ type: 'user/setState', payload });
   },
-};
+};     

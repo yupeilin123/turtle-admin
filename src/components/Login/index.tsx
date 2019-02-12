@@ -8,12 +8,12 @@ const FormItem = Form.Item;
 
 interface usernameType {
   id: string,
-  rules: Array<any>
+  rules?: Array<any>
 }
 
 interface passwordType {
   id: string,
-  rules: Array<any>
+  rules?: Array<any>
 }
 
 interface Props extends FormComponentProps{

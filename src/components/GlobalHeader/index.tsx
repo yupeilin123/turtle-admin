@@ -17,7 +17,7 @@ interface CurrentUserType {
 interface Props {
   collapsed: boolean,
   avatarMenu: Array<AvatarMenuType>,
-  onClickAvatarMenu: () => void,
+  onClickAvatarMenu: any,
   onCollapseMenu: () => void,
   logo: string,
   currentUser: CurrentUserType

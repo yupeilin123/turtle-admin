@@ -10,10 +10,13 @@ import routerData from '@/common/router';
 const logo = require('@/assets/logo.png')
 import { getMenuData, getRouterData } from '../util/utils';
 
+interface UserProps {
+  currentUser: any
+}
 interface BasicLayoutProps {
   dispatch: Function,
   location: object,
-  user: object
+  user: UserProps
 }
 
 interface BasicLayoutState {
@@ -22,11 +25,6 @@ interface BasicLayoutState {
 
 interface AvatatMenuType {
   key: string,
-}
-
-interface RouterType {
-  [index: number]: string,
-  length: number,
 }
 
 const { Header, Footer, Content } = Layout;
@@ -65,7 +63,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState
     }
   }
 
-  redirectData = (router: RouterType) => {
+  redirectData = (router: any) => {
     for (let key = 0; key < router.length; key += 1) {
       if (router[key].path.match(/\//g).length > 1) {
         return router[key].path;
@@ -134,4 +132,8 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState
   }
 }
 
-export default connect(({ user }) => ({ user }))(BasicLayout);
+const mapStateToProps = (state: any) => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(BasicLayout);

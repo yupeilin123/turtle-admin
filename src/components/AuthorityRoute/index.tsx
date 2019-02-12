@@ -1,12 +1,12 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router';
 import { getAuthority } from '@/util/authority';
 
 interface Props {
   path: string,
   redirectPath: string,
-  authority?: Array<object> | string,
-  render: () => ReactNode,
+  authority?: Array<string> | string,
+  render: any,
 }
 
 interface State {

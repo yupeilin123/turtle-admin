@@ -16,7 +16,7 @@ import LoginLayout from './layouts/LoginLayout';
 
 const history = createHistory();
 
-const store = configStore(history);
+const store: any = configStore(history);
 store.runSaga();
 
 function AppConfig() {
@@ -28,7 +28,7 @@ function AppConfig() {
             <Route path='/login' component={LoginLayout} />
             <AuthorityRoute
               path='/'
-              render={props => <BasicLayout {...props} />}
+              render={(props: any) => <BasicLayout {...props} />}
               authority={['admin', 'guest']}
               redirectPath='/login'
             />

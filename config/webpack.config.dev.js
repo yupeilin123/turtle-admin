@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint-friendly-formatter');
+const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = {
   mode: 'development',
@@ -31,6 +32,15 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'awesome-typescript-loader',
         include: path.resolve('src'),
+        options: {
+          getCustomTransformers: () => ({
+            before: [tsImportPluginFactory({
+              libraryName: 'antd',
+              libraryDirectory: 'lib',
+              style: true
+            })]
+          }),
+        }
       },
       {
         test: /\.(js|jsx)$/,

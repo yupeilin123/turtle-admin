@@ -8,26 +8,18 @@ import { getAuthority } from '@/util/authority';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-interface locationType {
-  pathname: string,
-}
-
 interface SiderMenuProps {
   collapsed: boolean,
   menuData: Array<number>, 
   logo: string, 
   siderTitle: string,
-  location: locationType,
-  dispatch: Function,
-}
-
-interface selectedKeysType {
-  [index: number]: string,
+  location: any,
+  dispatch?: Function,
 }
 
 interface SiderMenuState {
-  openKeys: Array<number>,
-  selectedKeys: selectedKeysType,
+  openKeys: Array<any>,
+  selectedKeys: Array<any>,
 }
 
 interface MenuItemTypes {
