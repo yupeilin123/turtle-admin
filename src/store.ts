@@ -6,13 +6,13 @@ import rootReducer from '@/reducers';
 import rootEffect from '@/effects';
 
 const sagaMiddleware = createSagaMiddleware();
-const reducers = history => combineReducers({
+const reducers = (history: any) => combineReducers({
   ...transformReducers(rootReducer),
   router: connectRouter(history),
 });
 
-export default function configStore(history) {
-  const store = createStore(
+export default function configStore(history: any) {
+  const store: any = createStore(
     reducers(history),
     applyMiddleware(routerMiddleware(history), sagaMiddleware),
   );

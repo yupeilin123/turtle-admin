@@ -7,12 +7,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = {
   mode: 'production',
   context: path.resolve(__dirname, '../'),
   entry: {
-    main: './src/index.js',
+    main: './src/index.tsx',
   },
   output: {
     filename: 'js/[name].[chunkhash:8].js',
@@ -28,6 +29,21 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'awesome-typescript-loader',
+        include: path.resolve('src'),
+        options: {
+          getCustomTransformers: () => ({
+            before: [tsImportPluginFactory({
+              libraryName: 'antd',
+              libraryDirectory: 'lib',
+              style: true
+            })]
+          }),
+        }
+      },
       // react js
       {
         test: /\.(js|jsx)/,
