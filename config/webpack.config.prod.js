@@ -10,7 +10,6 @@ const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 module.exports = {
   mode: 'production',
-  context: path.resolve(__dirname, '../'),
   entry: {
     main: './src/index.js',
   },
@@ -55,12 +54,7 @@ module.exports = {
         test: /\.(css|less)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-            },
-          },
+          'css-loader',
           'postcss-loader',
           {
             loader: 'less-loader',
@@ -119,9 +113,8 @@ module.exports = {
       // font
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
-          limit: 10000,
           name: 'fonts/[name].[hash:8].[ext]',
         },
       },
@@ -145,7 +138,7 @@ module.exports = {
     new OptimizeCSSAssetsPlugin(),
     // 生成mainifets
     new ManifestPlugin(),
-    // 搭配HtmlWebpackPlugin的inlineSource来使用，用来内联资源
+    // 搭配HtmlWebpackPlugin的inlineSource来使用，用来内联runtime资源
     new InlineSourcePlugin(),
   ],
   // 优化代码

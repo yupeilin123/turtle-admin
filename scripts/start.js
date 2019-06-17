@@ -39,6 +39,7 @@ const serverConfig = merge(devConfig, {
 });
 
 serverConfig.plugins.push(
+  // 启动时进度条
   new ProgressBarPlugin({
     format: '  start server [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
     clear: false,

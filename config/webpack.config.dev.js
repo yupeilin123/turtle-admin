@@ -5,8 +5,8 @@ const eslintFormatter = require('eslint-friendly-formatter');
 
 module.exports = {
   mode: 'development',
-  context: path.resolve(__dirname, '../'),
-  entry: path.resolve('src/index.js'),
+  // context: path.resolve(__dirname, '../'),
+  entry: './src/index.js',
   output: {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
@@ -24,7 +24,7 @@ module.exports = {
     noParse: [
       /moment/,
     ],
-    // elsint
+    // 预先elsint
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -106,9 +106,8 @@ module.exports = {
       // font-family
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
-          limit: 10000,
           name: 'fonts/[name].[ext]',
         },
       },

@@ -16,7 +16,9 @@ const spinner = ora(
 );
 spinner.start();
 
+// 清空 dist 文件夹
 fs.emptyDir(path.resolve(__dirname, '../dist')).then(() => {
+  // 判断是否需要分析打包后文件
   if (process.env.ANALYZE) {
     const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
     prodConfig.plugins.push(
