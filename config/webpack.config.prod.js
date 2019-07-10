@@ -135,9 +135,8 @@ module.exports = {
       // font
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
-          limit: 10000,
           name: 'fonts/[name].[hash:8].[ext]',
         },
       },

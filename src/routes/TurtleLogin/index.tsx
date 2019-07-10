@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Login from '@/components/Login';
-const logo = require('@/assets/logo.png')
-const styles = require('./index.less')
+
+const logo = require('@/assets/logo.png');
+const styles = require('./index.less');
 // import logo from '@/assets/logo.png';
 // import styles from './index.less';
 
@@ -15,7 +16,7 @@ class TurtleLogin extends React.PureComponent<TurtleLoginProps> {
     localStorage.clear();
   }
 
-  handleLogin = (values: object) => {
+  handleLogin = (values: any) => {
     this.props.dispatch({ type: 'login/login', payload: { ...values } });
   }
 

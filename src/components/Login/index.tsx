@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Icon } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 // import styles from './index.less';
-const styles = require('./index.less')
+const styles = require('./index.less');
 
 const FormItem = Form.Item;
 
@@ -25,7 +25,7 @@ interface Props extends FormComponentProps{
 class Login extends React.Component<Props> {
   handleSubmit = (e: any) => {
     e.preventDefault();
-    this.props.form.validateFields((err: object, values: object) => {
+    this.props.form.validateFields((err: any, values: any) => {
       if (!err) {
         this.props.onLogin(values);
       }
@@ -63,4 +63,4 @@ class Login extends React.Component<Props> {
   }
 }
 
-export default Form.create()(Login);
+export default Form.create<Props>()(Login);
