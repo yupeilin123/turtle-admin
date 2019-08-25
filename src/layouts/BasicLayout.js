@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
 import { connect } from 'react-redux';
+import routerData from '@/common/router';
 import GlobalHeader from '@/components/GlobalHeader';
 import GlobalFooter from '@/components/GlobalFooter';
 import SiderMenu from '@/components/SiderMenu';
-import routerData from '@/common/router';
 import logo from '@/assets/logo.png';
-import { getMenuData, getRouterData } from '../util/utils';
+import { getMenuData, getRouterData } from '@/util/utils';
 
 const { Header, Footer, Content } = Layout;
 const avatarMenu = [{

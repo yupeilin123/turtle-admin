@@ -12,7 +12,7 @@ const Login = props => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.onLogin(values);
+        props.onLogin(values);
       }
     });
   };

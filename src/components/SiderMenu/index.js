@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-import styles from './index.less';
 import { getAuthority } from '@/util/authority';
+import styles from './index.less';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import { Icon } from 'antd';
-import styles from './LoginLayout.less';
-import GlobalFooter from '@/components/GlobalFooter';
 import TurtleLogin from '@/pages/TurtleLogin';
+import GlobalFooter from '@/components/GlobalFooter';
+import styles from './LoginLayout.less';
 
-const LoginLayout = () => (
+export default () => (
   <div className={styles.container}>
     <div className={styles.content}>
       <Switch>
@@ -19,7 +19,7 @@ const LoginLayout = () => (
           {' '}
           <Icon type='copyright' />
           {' '}
-          2018
+          2019
           yupeilin
         </React.Fragment>
       )}
@@ -27,5 +27,3 @@ const LoginLayout = () => (
     />
   </div>
 );
-
-export default LoginLayout;

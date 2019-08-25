@@ -28,6 +28,11 @@ const routerMap = {
         icon: 'form',
         component: getDynamicComponent(pageImport('Counter')),
       },
+      '/hook-counter': {
+        name: 'hook-counter',
+        icon: 'gift',
+        component: getDynamicComponent(pageImport('HookCounter')),
+      },
       '/guest': {
         name: 'guest',
         icon: 'star-o',
