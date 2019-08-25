@@ -24,7 +24,6 @@ function searchOpenSubMenu(path) {
   return openKeys;
 }
 
-
 export default class SiderMenu extends React.PureComponent {
   state = {
     openKeys: [],

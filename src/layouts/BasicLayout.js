@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
 import { connect } from 'react-redux';
@@ -19,13 +19,11 @@ const siderTitle = 'turtle admin';
 const NotFound = () => <div>404</div>;
 const routerComp = getRouterData(routerData);
 
-class BasicLayout extends React.PureComponent {
-  state = {
-    collapsed: false,
-  }
-
-  componentDidMount() {
-    this.props.dispatch({
+const BasicLayout = props => {
+  const { currentUser } = props.user;
+  const [collapsed, setCollapsed] = useState(false);
+  useEffect(() => {
+    props.dispatch({
       type: 'user/getCurrentUser',
       payload: {
         currentUser: {
@@ -33,85 +31,79 @@ class BasicLayout extends React.PureComponent {
         },
       },
     });
-  }
+  });
 
-  handleCollapseMenu = () => {
-    this.setState(prevState => ({ collapsed: !prevState.collapsed }));
-  }
+  const handleCollapseMenu = () => {
+    setCollapsed(!collapsed);
+  };
 
-  handleClicktAvatarMenu = ({ key }) => {
+  const handleClicktAvatarMenu = ({ key }) => {
     if (key === 'logout') {
-      this.props.dispatch({ type: 'login/logout' });
+      props.dispatch({ type: 'login/logout' });
     }
-  }
+  };
 
-  redirectData = router => {
+  const redirectData = router => {
     for (let key = 0; key < router.length; key += 1) {
       if (router[key].path.match(/\//g).length > 1) {
         return router[key].path;
       }
     }
     return 'counter';
-  }
-
-  render() {
-    const { collapsed } = this.state;
-    const { location } = this.props;
-    const { currentUser } = this.props.user;
-    return (
+  };
+  return (
+    <Layout>
+      <SiderMenu
+        collapsed={collapsed}
+        menuData={getMenuData(routerData)}
+        location={props.location}
+        logo={logo}
+        siderTitle={siderTitle}
+      />
       <Layout>
-        <SiderMenu
-          collapsed={collapsed}
-          menuData={getMenuData(routerData)}
-          location={location}
-          logo={logo}
-          siderTitle={siderTitle}
-        />
-        <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <GlobalHeader
-              collapsed={collapsed}
-              currentUser={currentUser}
-              onClickAvatarMenu={this.handleClicktAvatarMenu}
-              onCollapseMenu={this.handleCollapseMenu}
-              avatarMenu={avatarMenu}
-              logo={logo}
-            />
-          </Header>
-          <Content style={{ margin: '20px 24px 0', height: '100%' }}>
-            <Switch>
-              <Redirect exact from='/' to={this.redirectData(routerComp)} />
-              {
-                routerComp.map(item => (
-                  <Route
-                    key={item.key}
-                    path={item.path}
-                    component={item.component}
-                    exact={item.exact}
-                  />
-                ))
-              }
-              <Route render={NotFound} />
-            </Switch>
-          </Content>
-          <Footer style={{ padding: 0 }}>
-            <GlobalFooter
-              copyright={(
-                <React.Fragment>
-                  Copyright
-                  {' '}
-                  <Icon type='copyright' />
-                  {' '}
-                  2018
-                  yupeilin
-                </React.Fragment>
-              )}
-            />
-          </Footer>
-        </Layout>
+        <Header style={{ background: '#fff', padding: 0 }}>
+          <GlobalHeader
+            collapsed={collapsed}
+            currentUser={currentUser}
+            onClickAvatarMenu={handleClicktAvatarMenu}
+            onCollapseMenu={handleCollapseMenu}
+            avatarMenu={avatarMenu}
+            logo={logo}
+          />
+        </Header>
+        <Content style={{ margin: '20px 24px 0', height: '100%' }}>
+          <Switch>
+            <Redirect exact from='/' to={redirectData(routerComp)} />
+            {
+              routerComp.map(item => (
+                <Route
+                  key={item.key}
+                  path={item.path}
+                  component={item.component}
+                  exact={item.exact}
+                />
+              ))
+            }
+            <Route render={NotFound} />
+          </Switch>
+        </Content>
+        <Footer style={{ padding: 0 }}>
+          <GlobalFooter
+            copyright={(
+              <React.Fragment>
+                Copyright
+                {' '}
+                <Icon type='copyright' />
+                {' '}
+                2019
+                yupeilin
+              </React.Fragment>
+            )}
+          />
+        </Footer>
       </Layout>
-    );
-  }
-}
+    </Layout>
+  );
+};
 
 export default connect(({ user }) => ({ user }))(BasicLayout);

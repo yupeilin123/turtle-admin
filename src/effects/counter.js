@@ -1,9 +1,9 @@
-import { delay, call, put } from 'redux-saga/effects';
+import { delay, put } from 'redux-saga/effects';
 
 export default {
   namespace: 'counter',
   * asyncOperation({ payload }) {
-    yield call(delay, 1000);
+    yield delay(1000);
     yield put({
       type: 'counter/setState',
       payload: {

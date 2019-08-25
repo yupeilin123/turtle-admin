@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import { LocaleProvider } from 'antd';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
-// import createHistory from 'history/createHashHistory';
 // user BrowserHistory
 import createHistory from 'history/createBrowserHistory';
 
@@ -21,7 +21,7 @@ store.runSaga();
 
 function AppConfig() {
   return (
-    <LocaleProvider>
+    <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Switch>
@@ -35,7 +35,7 @@ function AppConfig() {
           </Switch>
         </ConnectedRouter>
       </Provider>
-    </LocaleProvider>
+    </ConfigProvider>
   );
 }
 

@@ -5,7 +5,7 @@ import getDynamicComponent from '@/components/DynamicComponent';
 
 // 异步加载
 const layoutImport = file => () => import(`../layouts/${file}`);
-const routerImport = file => () => import(`../routes/${file}`);
+const pageImport = file => () => import(`../pages/${file}`);
 
 // 同步加载
 // import BasicLayout from '../layouts/BasicLayout';
@@ -26,19 +26,19 @@ const routerMap = {
       '/counter': {
         name: 'counter',
         icon: 'form',
-        component: getDynamicComponent(routerImport('Counter')),
+        component: getDynamicComponent(pageImport('Counter')),
       },
       '/guest': {
         name: 'guest',
         icon: 'star-o',
         authority: 'guest',
-        component: getDynamicComponent(routerImport('Guest')),
+        component: getDynamicComponent(pageImport('Guest')),
       },
       '/admin': {
         name: 'admin',
         icon: 'heart-o',
         authority: 'admin',
-        component: getDynamicComponent(routerImport('Admin')),
+        component: getDynamicComponent(pageImport('Admin')),
       },
     },
   },

@@ -1,9 +1,9 @@
-import { delay, call, put } from 'redux-saga/effects';
+import { delay, put } from 'redux-saga/effects';
 
 export default {
   namespace: 'user',
   * getCurrentUser({ payload }) {
-    yield call(delay, 300);
+    yield delay(300);
     yield put({ type: 'user/setState', payload });
   },
 };
