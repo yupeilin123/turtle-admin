@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Spin } from 'antd';
 import { connect } from 'react-redux';
 import routerData from '@/common/router';
 import GlobalHeader from '@/components/GlobalHeader';
@@ -18,6 +18,16 @@ const avatarMenu = [{
 const siderTitle = 'turtle admin';
 const NotFound = () => <div>404</div>;
 const routerComp = getRouterData(routerData);
+
+const SpinStyle = {
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  zIndex: 100,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
 
 const BasicLayout = props => {
   const { currentUser } = props.user;
@@ -71,8 +81,8 @@ const BasicLayout = props => {
             logo={logo}
           />
         </Header>
-        <Content style={{ margin: '20px 24px 0', height: '100%' }}>
-          <React.Suspense fallback={<div>loading...</div>}>
+        <Content style={{ margin: '20px 24px 0', height: '100%', position: 'relative' }}>
+          <React.Suspense fallback={<Spin size='large' style={SpinStyle} />}>
             <Switch>
               <Redirect exact from='/' to={redirectData(routerComp)} />
               {
