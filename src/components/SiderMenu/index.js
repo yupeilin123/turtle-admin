@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import { getAuthority } from '@/util/authority';
@@ -24,51 +24,47 @@ function searchOpenSubMenu(path) {
   return openKeys;
 }
 
-export default class SiderMenu extends React.PureComponent {
-  state = {
-    openKeys: [],
-    selectedKeys: [],
-  }
+export default props => {
+  const { collapsed, menuData, logo, siderTitle, location } = props;
+  const [openKeys, setOpenKeys] = useState([]);
+  const [selectedKeys, setSelectedKeys] = useState([]);
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.location.pathname !== prevState.selectedKeys[0]) {
-      return {
-        openKeys: searchOpenSubMenu(nextProps.location.pathname),
-        selectedKeys: [nextProps.location.pathname],
-      };
+  useEffect(() => {
+    if (location.pathname !== selectedKeys[0]) {
+      setOpenKeys(searchOpenSubMenu(location.pathname));
+      setSelectedKeys([location.pathname]);
     }
-    return null;
-  }
+  }, [location]);
 
-  handleCreateMenu = menuData => {
-    if (!menuData) {
+  const handleCreateMenu = menus => {
+    if (!menus) {
       return [];
     }
-    return menuData.filter(item => item.name && !item.hidden)
-      .filter(item => this.handleFilterAuthorityMenu(item))
-      .map(item => this.getSubMenuOrMenuItem(item))
+    return menus.filter(item => item.name && !item.hidden)
+      .filter(item => handleFilterAuthorityMenu(item))
+      .map(item => getSubMenuOrMenuItem(item))
       .filter(item => item);
-  }
+  };
 
-  handleFilterAuthorityMenu = item => !item.authority || item.authority === getAuthority()
+  const handleFilterAuthorityMenu = item => !item.authority || item.authority === getAuthority();
 
-  getSubMenuOrMenuItem = item => {
+  const getSubMenuOrMenuItem = item => {
     if (item.children && item.children.length > 0) {
-      return this.handleCreateSubMenu(item);
+      return handleCreateSubMenu(item);
     }
-    return this.handleCreateMenuItem(item);
-  }
+    return handleCreateMenuItem(item);
+  };
 
-  handleCreateMenuItem = item => (
+  const handleCreateMenuItem = item => (
     <Menu.Item key={item.path}>
-      <Link to={item.path} replace={item.path === this.props.location.pathname}>
+      <Link to={item.path} replace={item.path === props.location.pathname}>
         {item.icon && <Icon type={item.icon} />}
         <span>{item.name}</span>
       </Link>
     </Menu.Item>
-  )
+  );
 
-  handleCreateSubMenu = item => (
+  const handleCreateSubMenu = item => (
     <SubMenu
       key={item.path}
       title={(
@@ -80,36 +76,30 @@ export default class SiderMenu extends React.PureComponent {
     >
       {item.children.map(m => this.getSubMenuOrMenuItem(m))}
     </SubMenu>
-  )
+  );
 
-  handleOpenSubMenu = openKeys => {
-    this.setState({
-      openKeys: openKeys.length ? openKeys : [],
-    });
-  }
+  const handleOpenSubMenu = openData => {
+    setOpenKeys(openData.length ? openData : []);
+  };
 
-  render() {
-    const { collapsed, menuData, logo, siderTitle } = this.props;
-    const { openKeys, selectedKeys } = this.state;
-    return (
-      <Sider trigger={null} collapsible collapsed={collapsed} className={styles.sider} width='250'>
-        <div className={styles.logo} key='logo'>
-          <Link to='/'>
-            <img src={logo} alt='logo' />
-            <h1>{siderTitle}</h1>
-          </Link>
-        </div>
-        <Menu
-          theme='dark'
-          mode='inline'
-          style={{ padding: '16px 0px' }}
-          openKeys={openKeys}
-          selectedKeys={selectedKeys}
-          onOpenChange={this.handleOpenSubMenu}
-        >
-          {this.handleCreateMenu(menuData)}
-        </Menu>
-      </Sider>
-    );
-  }
-}
+  return (
+    <Sider trigger={null} collapsible collapsed={collapsed} className={styles.sider} width='250'>
+      <div className={styles.logo} key='logo'>
+        <Link to='/'>
+          <img src={logo} alt='logo' />
+          <h1>{siderTitle}</h1>
+        </Link>
+      </div>
+      <Menu
+        theme='dark'
+        mode='inline'
+        style={{ padding: '16px 0px' }}
+        openKeys={openKeys}
+        selectedKeys={selectedKeys}
+        onOpenChange={handleOpenSubMenu}
+      >
+        {handleCreateMenu(menuData)}
+      </Menu>
+    </Sider>
+  );
+};

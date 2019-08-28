@@ -5,7 +5,6 @@ import logo from '@/assets/logo.png';
 import styles from './index.less';
 
 const TurtleLogin = props => {
-  console.log(props);
   localStorage.clear();
   const login = values => {
     props.dispatch({ type: 'login/login', payload: { ...values } });

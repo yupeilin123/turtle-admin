@@ -72,20 +72,22 @@ const BasicLayout = props => {
           />
         </Header>
         <Content style={{ margin: '20px 24px 0', height: '100%' }}>
-          <Switch>
-            <Redirect exact from='/' to={redirectData(routerComp)} />
-            {
-              routerComp.map(item => (
-                <Route
-                  key={item.key}
-                  path={item.path}
-                  component={item.component}
-                  exact={item.exact}
-                />
-              ))
-            }
-            <Route render={NotFound} />
-          </Switch>
+          <React.Suspense fallback={<div>loading...</div>}>
+            <Switch>
+              <Redirect exact from='/' to={redirectData(routerComp)} />
+              {
+                routerComp.map(item => (
+                  <Route
+                    key={item.key}
+                    path={item.path}
+                    component={item.component}
+                    exact={item.exact}
+                  />
+                ))
+              }
+              <Route render={NotFound} />
+            </Switch>
+          </React.Suspense>
         </Content>
         <Footer style={{ padding: 0 }}>
           <GlobalFooter

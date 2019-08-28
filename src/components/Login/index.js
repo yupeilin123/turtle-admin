@@ -30,7 +30,7 @@ const Login = props => {
           {getFieldDecorator(password.id || 'password', {
             rules: password.rules || [{ required: true, message: 'Please input your Password!' }],
           })(
-            <Input prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />} type='password' placeholder='888888/guest' size='large' />,
+            <Input.Password prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />} type='password' placeholder='888888/guest' size='large' />,
           )}
         </FormItem>
         <FormItem>
