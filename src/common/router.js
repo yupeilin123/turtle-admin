@@ -1,17 +1,10 @@
-import getDynamicComponent from '@/components/DynamicComponent';
+import React from 'react';
 
 // 同步加载
 // import BasicLayout from '../layouts/BasicLayout';
-
-// 异步加载
-const layoutImport = file => () => import(`../layouts/${file}`);
-const pageImport = file => () => import(`../pages/${file}`);
-
-// 同步加载
-// import BasicLayout from '../layouts/BasicLayout';
-// import Counter from '../routes/Counter';
-// import Guest from '../routes/Guest';
-// import Admin from '../routes/Admin';
+// import Counter from '../pages/Counter';
+// import Guest from '../pages/Guest';
+// import Admin from '../pages/Admin';
 
 const routerMap = {
   '/': {
@@ -20,30 +13,30 @@ const routerMap = {
     // authority: String | Array
     // hidden: Boolean
     exact: true,
-    component: getDynamicComponent(layoutImport('BasicLayout')),
+    component: React.lazy(() => import('../layouts/BasicLayout')),
     // component: BasicLayout,
     children: {
       '/counter': {
         name: 'counter',
         icon: 'form',
-        component: getDynamicComponent(pageImport('Counter')),
+        component: React.lazy(() => import('../pages/Counter')),
       },
       '/hook-counter': {
         name: 'hook-counter',
         icon: 'gift',
-        component: getDynamicComponent(pageImport('HookCounter')),
+        component: React.lazy(() => import('../pages/HookCounter')),
       },
       '/guest': {
         name: 'guest',
         icon: 'star-o',
         authority: 'guest',
-        component: getDynamicComponent(pageImport('Guest')),
+        component: React.lazy(() => import('../pages/Guest')),
       },
       '/admin': {
         name: 'admin',
         icon: 'heart-o',
         authority: 'admin',
-        component: getDynamicComponent(pageImport('Admin')),
+        component: React.lazy(() => import('../pages/Admin')),
       },
     },
   },
