@@ -102,14 +102,14 @@ const BasicLayout = props => {
         <Footer style={{ padding: 0 }}>
           <GlobalFooter
             copyright={(
-              <React.Fragment>
+              <>
                 Copyright
                 {' '}
                 <Icon type='copyright' />
                 {' '}
                 2019
                 yupeilin
-              </React.Fragment>
+              </>
             )}
           />
         </Footer>

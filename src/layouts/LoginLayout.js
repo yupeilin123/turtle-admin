@@ -14,14 +14,14 @@ export default () => (
     </div>
     <GlobalFooter
       copyright={(
-        <React.Fragment>
+        <>
           Copyright
           {' '}
           <Icon type='copyright' />
           {' '}
           2019
           yupeilin
-        </React.Fragment>
+        </>
       )}
       style={{ color: 'rgba(0,0,0,0.85)' }}
     />
