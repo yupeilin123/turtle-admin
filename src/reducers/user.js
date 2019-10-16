@@ -1,9 +1,8 @@
-export default {
-  namespace: 'user',
-  state: {
-    currentUser: {},
-  },
-  setState: (state, action) => {
-    return { ...state, ...action.payload };
-  },
+export default (state = { currentUser: {} }, action) => {
+  switch (action.type) {
+    case 'user/setState':
+      return { ...state, ...action.payload };
+    default:
+      return state;
+  }
 };

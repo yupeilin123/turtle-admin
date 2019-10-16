@@ -4,7 +4,6 @@ import { push } from 'connected-react-router';
 import { setAuthority } from '@/util/authority';
 
 export default {
-  namespace: 'login',
   * login({ payload }) {
     const { username, password } = payload;
     if ((username === 'admin' && password === '888888') || (username === 'guest' && password === 'guest')) {
