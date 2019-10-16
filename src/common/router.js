@@ -21,10 +21,15 @@ const routerMap = {
         icon: 'form',
         component: React.lazy(() => import('../pages/Counter')),
       },
-      '/hook-counter': {
-        name: 'hook-counter',
+      '/hook-useState': {
+        name: 'hook-useState',
         icon: 'gift',
-        component: React.lazy(() => import('../pages/HookCounter')),
+        component: React.lazy(() => import('../pages/UseStateHook')),
+      },
+      '/hook-useReducer': {
+        name: 'hook-useReducer',
+        icon: 'coffee',
+        component: React.lazy(() => import('../pages/UserReducerHook')),
       },
       '/guest': {
         name: 'guest',

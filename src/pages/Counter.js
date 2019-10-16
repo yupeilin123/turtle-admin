@@ -42,7 +42,7 @@ const Counter = props => {
   };
 
   return (
-    <Card>
+    <Card title='Counter'>
       <Button style={{ marginRight: 10 }} onClick={handleDecrement}>减一</Button>
       <span>{count}</span>
       <Button style={{ marginLeft: 10 }} onClick={handleIncrement}>加一</Button>

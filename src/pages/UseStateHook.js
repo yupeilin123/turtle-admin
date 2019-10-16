@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'antd';
 
-const HookCounter = () => {
+const HookUseState = () => {
   const [count, setCount] = useState(0);
 
   const asyncDecrement = () => {
@@ -15,7 +15,7 @@ const HookCounter = () => {
     }, 1000);
   };
   return (
-    <Card>
+    <Card title='use State Counter'>
       <Button style={{ marginRight: 10 }} onClick={() => setCount(count - 1)}>减一</Button>
       <span>{count}</span>
       <Button style={{ marginLeft: 10 }} onClick={() => setCount(count + 1)}>加一</Button>
@@ -30,4 +30,4 @@ const HookCounter = () => {
   );
 };
 
-export default HookCounter;
+export default HookUseState;
