@@ -74,7 +74,7 @@ export default props => {
         </span>
       )}
     >
-      {item.children.map(m => this.getSubMenuOrMenuItem(m))}
+      {item.children.map(m => getSubMenuOrMenuItem(m))}
     </SubMenu>
   );
 
