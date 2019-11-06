@@ -1,20 +1,18 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import { getAuthority } from '@/util/authority';
 // import styles from './index.less';
 const styles = require('./index.less');
-import { getAuthority } from '@/util/authority';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 interface SiderMenuProps {
   collapsed: boolean,
-  menuData: Array<number>, 
-  logo: string, 
+  menuData: Array<number>,
+  logo: string,
   siderTitle: string,
-  location: any,
-  dispatch?: Function,
 }
 
 interface SiderMenuState {
@@ -54,10 +52,10 @@ export default class SiderMenu extends React.PureComponent<SiderMenuProps, Sider
   }
 
   static getDerivedStateFromProps(nextProps: SiderMenuProps, prevState: SiderMenuState) {
-    if (nextProps.location.pathname !== prevState.selectedKeys[0]) {
+    if (window.location.pathname !== prevState.selectedKeys[0]) {
       return {
-        openKeys: searchOpenSubMenu(nextProps.location.pathname),
-        selectedKeys: [nextProps.location.pathname],
+        openKeys: searchOpenSubMenu(window.location.pathname),
+        selectedKeys: [window.location.pathname],
       };
     }
     return null;
@@ -84,7 +82,7 @@ export default class SiderMenu extends React.PureComponent<SiderMenuProps, Sider
 
   handleCreateMenuItem = (item: MenuItemTypes) => (
     <Menu.Item key={item.path}>
-      <Link to={item.path} replace={item.path === this.props.location.pathname}>
+      <Link to={item.path} replace={item.path === window.location.pathname}>
         {item.icon && <Icon type={item.icon} />}
         <span>{item.name}</span>
       </Link>

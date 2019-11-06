@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 // import styles from './index.less';
-const styles = require('./index.less')
+const styles = require('./index.less');
 
 interface Props {
-  copyright?: ReactNode,
-  style?: object
+  copyright?: React.ReactNode,
+  style?: React.CSSProperties
 }
 
 export default ({ copyright, style }: Props) => (

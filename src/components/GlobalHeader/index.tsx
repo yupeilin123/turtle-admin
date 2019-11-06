@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Avatar, Menu, Dropdown } from 'antd';
 // import styles from './index.less';
-const styles = require('./index.less')
+const styles = require('./index.less');
 
 interface AvatarMenuType {
   key: string,

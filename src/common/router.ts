@@ -7,7 +7,6 @@
 // 同步加载
 import BasicLayout from '../layouts/BasicLayout';
 import Counter from '../routes/Counter';
-import HooksCounter from '../routes/HooksCounter';
 import Guest from '../routes/Guest';
 import Admin from '../routes/Admin';
 
@@ -24,27 +23,21 @@ const routerMap = {
       '/counter': {
         name: 'counter',
         icon: 'form',
-        component: Counter
-        // component: getDynamicComponent(routerImport('Counter')),
-      },
-      '/hooks-counter': {
-        name: 'hooks-counter',
-        icon: 'heat-map',
-        component: HooksCounter
+        component: Counter,
         // component: getDynamicComponent(routerImport('Counter')),
       },
       '/guest': {
         name: 'guest',
         icon: 'star-o',
         authority: 'guest',
-        component: Guest
+        component: Guest,
         // component: getDynamicComponent(routerImport('Guest')),
       },
       '/admin': {
         name: 'admin',
         icon: 'heart-o',
         authority: 'admin',
-        component: Admin
+        component: Admin,
         // component: getDynamicComponent(routerImport('Admin')),
       },
     },

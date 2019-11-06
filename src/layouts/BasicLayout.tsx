@@ -1,30 +1,21 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
-import { connect } from 'react-redux';
 import GlobalHeader from '@/components/GlobalHeader';
 import GlobalFooter from '@/components/GlobalFooter';
 import SiderMenu from '@/components/SiderMenu';
 import routerData from '@/common/router';
-// import logo from '@/assets/logo.png';
-const logo = require('@/assets/logo.png')
 import { getMenuData, getRouterData } from '../util/utils';
-
-interface UserProps {
-  currentUser: any
-}
-interface BasicLayoutProps {
-  dispatch: Function,
-  location: object,
-  user: UserProps
-}
+// import logo from '@/assets/logo.png';
+const logo = require('@/assets/logo.png');
 
 interface BasicLayoutState {
-  collapsed: boolean,
+  collapsed: boolean;
+  currentUser: any;
 }
 
 interface AvatatMenuType {
-  key: string,
+  key: string;
 }
 
 const { Header, Footer, Content } = Layout;
@@ -37,31 +28,24 @@ const siderTitle = 'turtle admin';
 const NotFound = () => <div>404</div>;
 const routerComp = getRouterData(routerData);
 
-class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState> {
+class BasicLayout extends React.PureComponent<any, BasicLayoutState> {
   state = {
     collapsed: false,
-  }
+    currentUser: {
+      name: 'turtle',
+    },
+  };
 
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'user/getCurrentUser',
-      payload: {
-        currentUser: {
-          name: 'turtle',
-        },
-      },
-    });
-  }
 
   handleCollapseMenu = () => {
     this.setState(prevState => ({ collapsed: !prevState.collapsed }));
-  }
+  };
 
   handleClicktAvatarMenu = ({ key }: AvatatMenuType) => {
     if (key === 'logout') {
-      this.props.dispatch({ type: 'login/logout' });
+      window.location.href = '/login';
     }
-  }
+  };
 
   redirectData = (router: any) => {
     for (let key = 0; key < router.length; key += 1) {
@@ -70,18 +54,15 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState
       }
     }
     return 'counter';
-  }
+  };
 
   render() {
-    const { collapsed } = this.state;
-    const { location } = this.props;
-    const { currentUser } = this.props.user;
+    const { collapsed, currentUser } = this.state;
     return (
       <Layout>
         <SiderMenu
           collapsed={collapsed}
           menuData={getMenuData(routerData)}
-          location={location}
           logo={logo}
           siderTitle={siderTitle}
         />
@@ -99,16 +80,14 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState
           <Content style={{ margin: '20px 24px 0', height: '100%' }}>
             <Switch>
               <Redirect exact from='/' to={this.redirectData(routerComp)} />
-              {
-                routerComp.map(item => (
-                  <Route
-                    key={item.key}
-                    path={item.path}
-                    component={item.component}
-                    exact={item.exact}
-                  />
-                ))
-              }
+              {routerComp.map(item => (
+                <Route
+                  key={item.key}
+                  path={item.path}
+                  component={item.component}
+                  exact={item.exact}
+                />
+              ))}
               <Route render={NotFound} />
             </Switch>
           </Content>
@@ -120,8 +99,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState
                   {' '}
                   <Icon type='copyright' />
                   {' '}
-                  2018
-                  yupeilin
+                  2019 yupeilin
                 </React.Fragment>
               )}
             />
@@ -132,8 +110,4 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, BasicLayoutState
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  user: state.user
-})
-
-export default connect(mapStateToProps)(BasicLayout);
+export default BasicLayout;

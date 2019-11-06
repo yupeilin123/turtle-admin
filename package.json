@@ -28,12 +28,8 @@
     "isomorphic-fetch": "^2.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1",
-    "redux": "^4.0.1",
-    "redux-helps": "^1.1.0",
-    "redux-saga": "^1.0.3"
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -48,7 +44,6 @@
     "@types/node": "^10.12.19",
     "@types/react": "^16.7.22",
     "@types/react-dom": "^16.0.11",
-    "@types/react-redux": "^7.0.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/webpack-env": "^1.13.7",
     "autoprefixer": "^9.4.7",
