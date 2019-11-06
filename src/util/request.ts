@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
 
 interface OptionsType {
-  method: string,
-  headers: object,
-  body: any
+  method: string;
+  headers: any;
+  body: any;
 }
 
 export default function request(url: string, options: OptionsType) {

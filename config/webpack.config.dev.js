@@ -2,12 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint-friendly-formatter');
-const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = {
   mode: 'development',
-  context: path.resolve(__dirname, '../'),
-  entry: path.resolve('src/index.tsx'),
+  entry: './src/index.tsx',
   output: {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
@@ -28,22 +26,7 @@ module.exports = {
     // elsint
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        loader: 'awesome-typescript-loader',
-        include: path.resolve('src'),
-        options: {
-          getCustomTransformers: () => ({
-            before: [tsImportPluginFactory({
-              libraryName: 'antd',
-              libraryDirectory: 'lib',
-              style: true
-            })]
-          }),
-        }
-      },
-      {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|ts|tsx)$/,
         enforce: 'pre',
         use: [
           {
@@ -57,7 +40,7 @@ module.exports = {
       },
       // react js
       {
-        test: /\.(js|jsx)/,
+        test: /\.(js|ts|tsx)/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -82,7 +65,12 @@ module.exports = {
           {
             loader: 'less-loader',
             options: {
-              modifyVars: require('../src/common/theme'),
+              modifyVars: {
+                'card-actions-background': '#f5f8fa',
+                'menu-dark-bg': '#343f51',
+                'menu-dark-submenu-bg': '#2e3848',
+                'menu-item-color': 'rgba(255, 255, 255, 0.65)',
+              },
               javascriptEnabled: true,
             },
           },

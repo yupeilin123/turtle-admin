@@ -3,50 +3,42 @@ import { Route, Redirect } from 'react-router';
 import { getAuthority } from '@/util/authority';
 
 interface Props {
-  path: string,
-  redirectPath: string,
-  authority?: Array<string> | string,
-  render: any,
+  path: string;
+  redirectPath: string;
+  authority?: Array<string> | string;
+  render: any;
 }
 
-interface State {
-  isAuthority: null | boolean
+interface RenderI extends Props {
+  isAuthority: boolean;
 }
 
-export default class AuthorityRoute extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isAuthority: null,
-    };
-  }
+function BasicLayoutRender({
+  path,
+  isAuthority,
+  render,
+  redirectPath,
+}: RenderI) {
+  return (
+    <Route
+      path={path}
+      render={isAuthority ? render : () => <Redirect to={redirectPath} />}
+    />
+  );
+}
 
-  static getDerivedStateFromProps(nextProps: Props) {
-    let isAuthority = null;
-    if (Array.isArray(nextProps.authority)) {
-      if (nextProps.authority.some(_ => _ === getAuthority())) {
-        isAuthority = true;
-      } else {
-        isAuthority = false;
-      }
-    } else if (nextProps.authority === getAuthority()) {
-      isAuthority = true;
-    } else {
-      isAuthority = false;
+const AuthorityRoute = (props: Props) => {
+  const { authority } = props;
+  if (Array.isArray(authority)) {
+    if (authority.some(_ => _ === getAuthority())) {
+      return BasicLayoutRender({ ...props, isAuthority: true });
     }
-    return {
-      isAuthority,
-    };
+    return BasicLayoutRender({ ...props, isAuthority: false });
   }
+  if (authority === getAuthority()) {
+    return BasicLayoutRender({ ...props, isAuthority: true });
+  }
+  return BasicLayoutRender({ ...props, isAuthority: false });
+};
 
-  render() {
-    const { path, render, redirectPath } = this.props;
-    const { isAuthority } = this.state;
-    return (
-      <Route
-        path={path}
-        render={isAuthority ? render : () => <Redirect to={redirectPath} />}
-      />
-    );
-  }
-}
+export default AuthorityRoute;

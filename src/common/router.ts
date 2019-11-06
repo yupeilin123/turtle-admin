@@ -1,14 +1,7 @@
-// import getDynamicComponent from '@/components/DynamicComponent';
-
-// 异步加载
-// const layoutImport = (file: string) => () => import(`../layouts/${file}`);
-// const routerImport = (file: string) => () => import(`../routes/${file}`);
-
-// 同步加载
 import BasicLayout from '../layouts/BasicLayout';
-import Counter from '../routes/Counter';
-import Guest from '../routes/Guest';
-import Admin from '../routes/Admin';
+import Counter from '../pages/Counter';
+import Guest from '../pages/Guest';
+import Admin from '../pages/Admin';
 
 const routerMap = {
   '/': {

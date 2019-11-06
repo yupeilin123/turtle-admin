@@ -3,10 +3,10 @@ import { message } from 'antd';
 import Login from '@/components/Login';
 import { setAuthority } from '@/util/authority';
 
-const logo = require('@/assets/logo.png');
 const styles = require('./index.less');
+const logo = require('@/assets/logo.png');
 // import logo from '@/assets/logo.png';
-// import styles from './index.less';
+// import * as styles from './index.less';
 
 interface LoginValue {
   username: string;

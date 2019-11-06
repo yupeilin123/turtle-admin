@@ -19,12 +19,6 @@ export function getMenuData(routerMap: any, parentPath: string = '') {
   return menu;
 }
 
-export function getRouterData(routerMap: any){
-  const flattenRoute = flatten(routerMap);
-  const routes = Object.keys(flattenRoute).map(path => flattenRoute[path]);
-  return routes;
-}
-
 function flatten(routerMap: any, parentPath: string = '') {
   let routes: any = {};
   Object.keys(routerMap).forEach(path => {
@@ -39,5 +33,11 @@ function flatten(routerMap: any, parentPath: string = '') {
       routes = { ...routes, ...flatten(routerMap[path].children, path === '/' ? '' : path) };
     }
   });
+  return routes;
+}
+
+export function getRouterData(routerMap: any) {
+  const flattenRoute = flatten(routerMap);
+  const routes = Object.keys(flattenRoute).map(path => flattenRoute[path]);
   return routes;
 }
