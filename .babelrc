@@ -17,7 +17,6 @@
   ],
   "plugins": [
     "@babel/transform-runtime",
-    "@babel/syntax-dynamic-import",
     [
       "@babel/proposal-class-properties",
       {
