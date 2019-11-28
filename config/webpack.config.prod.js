@@ -7,6 +7,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -121,6 +122,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new HardSourceWebpackPlugin(),
     // 提取css分离到其他文件
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
