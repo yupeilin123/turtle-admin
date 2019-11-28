@@ -2,11 +2,13 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint-friendly-formatter');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  // context: path.resolve(__dirname, '../'),
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js'
+  },
   output: {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
@@ -21,9 +23,6 @@ module.exports = {
     },
   },
   module: {
-    noParse: [
-      /moment/,
-    ],
     // 预先elsint
     rules: [
       {
@@ -114,6 +113,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new AntdDayjsWebpackPlugin(),
     // 热更新模块替换
     new webpack.HotModuleReplacementPlugin(),
     // html插件

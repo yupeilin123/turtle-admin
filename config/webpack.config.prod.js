@@ -8,6 +8,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -122,6 +123,8 @@ module.exports = {
     ],
   },
   plugins: [
+    new AntdDayjsWebpackPlugin(),
+    // 优化打包速度
     new HardSourceWebpackPlugin(),
     // 提取css分离到其他文件
     new MiniCssExtractPlugin({
@@ -167,20 +170,20 @@ module.exports = {
       cacheGroups: {
         // 基础类库
         libs: {
-          name: 'chunk-libs',
+          name: 'vendor-libs',
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
           chunks: 'initial',
         },
         // UI库
         antdUI: {
-          name: 'chunk-antd',
+          name: 'antd-ui',
           priority: 20,
           test: /[\\/]node_modules[\\/]antd[\\/]/,
         },
         // 自定义组件
         commons: {
-          name: 'chunk-comomns',
+          name: 'common-comps',
           test: /src\/components/,
           minChunks: 3,
           priority: 2,
