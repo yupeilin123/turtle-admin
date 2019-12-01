@@ -6,9 +6,7 @@ const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: {
-    main: './src/index.js'
-  },
+  entry: './src/index.js',
   output: {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
