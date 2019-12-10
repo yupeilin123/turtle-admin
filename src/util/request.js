@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 export default function request(url, options = {}) {
   const newOptions = { ...options };
-  if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
+  if (newOptions.method === 'POST' || newOptions.method === 'PUT' || newOptions.method === 'GET') {
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
         Accept: 'application/json',
@@ -12,7 +12,7 @@ export default function request(url, options = {}) {
       newOptions.body = JSON.stringify(newOptions.body);
     } else {
       newOptions.headers = {
-        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
         ...newOptions.headers,
       };
     }

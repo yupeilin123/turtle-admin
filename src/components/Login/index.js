@@ -21,14 +21,14 @@ const Login = props => {
       <Form onSubmit={handleSubmit}>
         <FormItem>
           {getFieldDecorator(username.id || 'username', {
-            rules: username.rules || [{ required: true, message: 'Please input your Username!' }],
+            rules: username.rules || [{ required: true, message: '请输入你的用户名!' }],
           })(
             <Input prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder='admin/guest' size='large' />,
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator(password.id || 'password', {
-            rules: password.rules || [{ required: true, message: 'Please input your Password!' }],
+            rules: password.rules || [{ required: true, message: '请输入你的密码!' }],
           })(
             <Input.Password prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />} type='password' placeholder='888888/guest' size='large' />,
           )}

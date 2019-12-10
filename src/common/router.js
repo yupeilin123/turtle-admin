@@ -1,20 +1,9 @@
 import React from 'react';
 
-// 同步加载
-// import BasicLayout from '../layouts/BasicLayout';
-// import Counter from '../pages/Counter';
-// import Guest from '../pages/Guest';
-// import Admin from '../pages/Admin';
-
 const routerMap = {
   '/': {
-    // name: String
-    // icon: Sting
-    // authority: String | Array
-    // hidden: Boolean
     exact: true,
     component: React.lazy(() => import('../layouts/BasicLayout')),
-    // component: BasicLayout,
     children: {
       '/counter': {
         name: 'counter',
