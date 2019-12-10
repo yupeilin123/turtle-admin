@@ -10,6 +10,8 @@ import createHistory from 'history/createBrowserHistory';
 
 import configStore from './store';
 
+import ErrorBoundary from './components/ErrorBoundary';
+
 import AuthorityRoute from './components/AuthorityRoute';
 import BasicLayout from './layouts/BasicLayout';
 import LoginLayout from './layouts/LoginLayout';
@@ -24,15 +26,17 @@ function AppConfig() {
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <Switch>
-            <Route path='/login' component={LoginLayout} />
-            <AuthorityRoute
-              path='/'
-              render={props => <BasicLayout {...props} />}
-              authority={['admin', 'guest']}
-              redirectPath='/login'
-            />
-          </Switch>
+          <ErrorBoundary>
+            <Switch>
+              <Route path='/login' component={LoginLayout} />
+              <AuthorityRoute
+                path='/'
+                render={props => <BasicLayout {...props} />}
+                authority={['admin', 'guest']}
+                redirectPath='/login'
+              />
+            </Switch>
+          </ErrorBoundary>
         </ConnectedRouter>
       </Provider>
     </ConfigProvider>
