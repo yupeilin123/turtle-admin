@@ -7,7 +7,7 @@
 #### 功能
 
 - 登录 / 注销 （搭配localStorage进行权限验证，也可以使用sessionStorage）
-- react 与 redux、redux-react-router、redux-saga使用 （redux、redux-saga的转化器 [redux-helps](https://github.com/yupeilin123/redux-helps))
+- react 与 redux、redux-react-router、redux-saga使用
 - simple例子：计数器Counter
 
 #### 使用

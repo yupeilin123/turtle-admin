@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Icon, Spin } from 'antd';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import routerData from '@/common/router';
 import GlobalHeader from '@/components/GlobalHeader';
 import GlobalFooter from '@/components/GlobalFooter';
@@ -29,11 +29,13 @@ const SpinStyle = {
   alignItems: 'center',
 };
 
-const BasicLayout = props => {
-  const { currentUser } = props.user;
+const BasicLayout = () => {
+  const { currentUser } = useSelector(state => state.user);
+  const location = useSelector(state => state.router.location);
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   useEffect(() => {
-    props.dispatch({
+    dispatch({
       type: 'user/getCurrentUser',
       payload: {
         currentUser: {
@@ -49,7 +51,7 @@ const BasicLayout = props => {
 
   const handleClicktAvatarMenu = ({ key }) => {
     if (key === 'logout') {
-      props.dispatch({ type: 'login/logout' });
+      dispatch({ type: 'login/logout' });
     }
   };
 
@@ -66,7 +68,7 @@ const BasicLayout = props => {
       <SiderMenu
         collapsed={collapsed}
         menuData={getMenuData(routerData)}
-        location={props.location}
+        location={location}
         logo={logo}
         siderTitle={siderTitle}
       />
@@ -118,4 +120,4 @@ const BasicLayout = props => {
   );
 };
 
-export default connect(({ user }) => ({ user }))(BasicLayout);
+export default BasicLayout;

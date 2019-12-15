@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button, Card } from 'antd';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Counter = props => {
-  const { count } = props.counter;
-
+const Counter = () => {
+  const { count } = useSelector(state => state.counter);
+  const dispatch = useDispatch();
   const handleIncrement = () => {
-    props.dispatch({
+    dispatch({
       type: 'counter/setState',
       payload: {
         count: count + 1,
@@ -15,7 +15,7 @@ const Counter = props => {
   };
 
   const handleDecrement = () => {
-    props.dispatch({
+    dispatch({
       type: 'counter/setState',
       payload: {
         count: count - 1,
@@ -24,7 +24,7 @@ const Counter = props => {
   };
 
   const handleAsyncIncrement = () => {
-    props.dispatch({
+    dispatch({
       type: 'counter/asyncOperation',
       payload: {
         count: count + 1,
@@ -33,7 +33,7 @@ const Counter = props => {
   };
 
   const handleAsyncDecrement = () => {
-    props.dispatch({
+    dispatch({
       type: 'counter/asyncOperation',
       payload: {
         count: count - 1,
@@ -42,7 +42,7 @@ const Counter = props => {
   };
 
   return (
-    <Card title='Counter'>
+    <Card title='redux Counter'>
       <Button style={{ marginRight: 10 }} onClick={handleDecrement}>减一</Button>
       <span>{count}</span>
       <Button style={{ marginLeft: 10 }} onClick={handleIncrement}>加一</Button>
@@ -56,4 +56,5 @@ const Counter = props => {
     </Card>
   );
 };
-export default connect(({ counter }) => ({ counter }))(Counter);
+
+export default Counter;

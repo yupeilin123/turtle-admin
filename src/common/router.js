@@ -6,7 +6,7 @@ const routerMap = {
     component: React.lazy(() => import('../layouts/BasicLayout')),
     children: {
       '/counter': {
-        name: 'counter',
+        name: 'redux-counter',
         icon: 'form',
         component: React.lazy(() => import('../pages/Counter')),
       },

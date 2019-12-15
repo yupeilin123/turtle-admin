@@ -1,13 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Login from '@/components/Login';
 import logo from '@/assets/logo.png';
 import styles from './index.less';
 
-const TurtleLogin = props => {
+const TurtleLogin = () => {
+  const dispatch = useDispatch();
   localStorage.clear();
   const login = values => {
-    props.dispatch({ type: 'login/login', payload: { ...values } });
+    dispatch({ type: 'login/login', payload: { ...values } });
   };
   return (
     <div className={styles.loginBox}>
@@ -30,4 +31,4 @@ const TurtleLogin = props => {
   );
 };
 
-export default connect()(TurtleLogin);
+export default TurtleLogin;
