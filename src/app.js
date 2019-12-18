@@ -6,7 +6,7 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 
 // user BrowserHistory
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 import configStore from './store';
 
@@ -16,7 +16,7 @@ import AuthorityRoute from './components/AuthorityRoute';
 import BasicLayout from './layouts/BasicLayout';
 import LoginLayout from './layouts/LoginLayout';
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 const store = configStore(history);
 store.runSaga();

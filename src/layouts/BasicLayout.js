@@ -43,8 +43,7 @@ const BasicLayout = () => {
         },
       },
     });
-  });
-
+  }, []);
   const handleCollapseMenu = () => {
     setCollapsed(!collapsed);
   };
