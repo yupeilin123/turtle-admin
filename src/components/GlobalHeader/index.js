@@ -1,5 +1,6 @@
 import React from 'react';
-import { Icon, Avatar, Menu, Dropdown } from 'antd';
+import { Avatar, Menu, Dropdown } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
 export default props => {
@@ -16,7 +17,7 @@ export default props => {
       {
         avatarMenu.map(n => (
           <Menu.Item key={n.key} disabled={n.disabled || false}>
-            {n.icon && <Icon type={n.icon} />}
+            {/* {n.icon && <Icon type={n.icon} />} */}
             {n.title}
           </Menu.Item>
         ))
@@ -25,11 +26,10 @@ export default props => {
   );
   return (
     <div className={styles.header}>
-      <Icon
-        className={styles.trigger}
-        type={collapsed ? 'menu-unfold' : 'menu-fold'}
-        onClick={onCollapseMenu}
-      />
+      {
+        collapsed ? <MenuUnfoldOutlined className={styles.trigger} onClick={onCollapseMenu} />
+          : <MenuFoldOutlined className={styles.trigger} onClick={onCollapseMenu} />
+      }
       <div className={styles.right}>
         <Dropdown overlay={menu} placement='bottomRight'>
           <span className={styles.avatar}>

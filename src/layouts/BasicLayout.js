@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Layout, Icon, Spin } from 'antd';
+import { Layout, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import routerData from '@/common/router';
 import GlobalHeader from '@/components/GlobalHeader';
@@ -106,7 +106,7 @@ const BasicLayout = () => {
               <>
                 Copyright
                 {' '}
-                <Icon type='copyright' />
+                by
                 {' '}
                 2019
                 yupeilin

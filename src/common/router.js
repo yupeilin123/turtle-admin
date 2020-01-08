@@ -1,4 +1,5 @@
 import React from 'react';
+import { SlackOutlined, RedditOutlined, RadarChartOutlined, HeatMapOutlined, SlackSquareOutlined } from '@ant-design/icons';
 
 const routerMap = {
   '/': {
@@ -7,28 +8,28 @@ const routerMap = {
     children: {
       '/counter': {
         name: 'redux-counter',
-        icon: 'form',
+        icon: <SlackOutlined />,
         component: React.lazy(() => import('../pages/Counter')),
       },
       '/hook-useState': {
         name: 'hook-useState',
-        icon: 'gift',
+        icon: <RedditOutlined />,
         component: React.lazy(() => import('../pages/UseStateHook')),
       },
       '/hook-useReducer': {
         name: 'hook-useReducer',
-        icon: 'coffee',
+        icon: <RadarChartOutlined />,
         component: React.lazy(() => import('../pages/UserReducerHook')),
       },
       '/guest': {
         name: 'guest',
         icon: 'star-o',
-        authority: 'guest',
+        authority: <HeatMapOutlined />,
         component: React.lazy(() => import('../pages/Guest')),
       },
       '/admin': {
         name: 'admin',
-        icon: 'heart-o',
+        icon: <SlackSquareOutlined />,
         authority: 'admin',
         component: React.lazy(() => import('../pages/Admin')),
       },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { getAuthority } from '@/util/authority';
 import styles from './index.less';
@@ -58,7 +58,7 @@ export default props => {
   const handleCreateMenuItem = item => (
     <Menu.Item key={item.path}>
       <Link to={item.path} replace={item.path === props.location.pathname}>
-        {item.icon && <Icon type={item.icon} />}
+        {item.icon}
         <span>{item.name}</span>
       </Link>
     </Menu.Item>
@@ -69,7 +69,7 @@ export default props => {
       key={item.path}
       title={(
         <span>
-          {item.icon && <Icon type={item.icon} />}
+          {item.icon}
           <span>{item.name}</span>
         </span>
       )}

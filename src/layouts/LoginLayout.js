@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import { Icon } from 'antd';
 import TurtleLogin from '@/pages/TurtleLogin';
 import GlobalFooter from '@/components/GlobalFooter';
 import styles from './LoginLayout.less';
@@ -17,7 +16,7 @@ export default () => (
         <>
           Copyright
           {' '}
-          <Icon type='copyright' />
+          by
           {' '}
           2019
           yupeilin

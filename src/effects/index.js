@@ -1,13 +1,13 @@
 import { takeEvery } from 'redux-saga/effects';
-import login from './login';
-import user from './user';
-import counter from './counter';
+import loginEffect from './login';
+import userEffect from './user';
+import counterEffect from './counter';
 
 function* rootEffect() {
-  yield takeEvery('login/login', login.login);
-  yield takeEvery('login/logout', login.logout);
-  yield takeEvery('user/getCurrentUser', user.getCurrentUser);
-  yield takeEvery('counter/asyncOperation', counter.asyncOperation);
+  yield takeEvery('login/login', loginEffect.login);
+  yield takeEvery('login/logout', loginEffect.logout);
+  yield takeEvery('user/getCurrentUser', userEffect.getCurrentUser);
+  yield takeEvery('counter/asyncOperation', counterEffect.asyncOperation);
 }
 
 export default rootEffect;
