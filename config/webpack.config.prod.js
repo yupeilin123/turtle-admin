@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
@@ -123,6 +124,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new AntdDayjsWebpackPlugin(),
     // 优化打包速度
     new HardSourceWebpackPlugin(),
@@ -183,7 +185,7 @@ module.exports = {
         },
         // 自定义组件
         commons: {
-          name: 'common-comps',
+          name: 'components',
           test: /src\/components/,
           minChunks: 3,
           priority: 2,
