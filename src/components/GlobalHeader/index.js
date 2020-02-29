@@ -17,7 +17,7 @@ export default props => {
       {
         avatarMenu.map(n => (
           <Menu.Item key={n.key} disabled={n.disabled || false}>
-            {/* {n.icon && <Icon type={n.icon} />} */}
+            {n.icon}
             {n.title}
           </Menu.Item>
         ))

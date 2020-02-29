@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import TurtleLogin from '@/pages/TurtleLogin';
+import Login from '@/pages/Login';
 import GlobalFooter from '@/components/GlobalFooter';
 import styles from './LoginLayout.less';
 
@@ -8,21 +8,9 @@ export default () => (
   <div className={styles.container}>
     <div className={styles.content}>
       <Switch>
-        <Route path='/login' exact component={TurtleLogin} />
+        <Route path='/login' exact component={Login} />
       </Switch>
     </div>
-    <GlobalFooter
-      copyright={(
-        <>
-          Copyright
-          {' '}
-          by
-          {' '}
-          2019
-          yupeilin
-        </>
-      )}
-      style={{ color: 'rgba(0,0,0,0.85)' }}
-    />
+    <GlobalFooter />
   </div>
 );

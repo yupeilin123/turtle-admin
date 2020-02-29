@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { LogoutOutlined } from '@ant-design/icons';
 import routerData from '@/common/router';
 import GlobalHeader from '@/components/GlobalHeader';
 import GlobalFooter from '@/components/GlobalFooter';
@@ -13,7 +14,7 @@ const { Header, Footer, Content } = Layout;
 const avatarMenu = [{
   title: '退出登录',
   key: 'logout',
-  icon: 'logout',
+  icon: <LogoutOutlined />,
 }];
 const siderTitle = 'turtle admin';
 const NotFound = () => <div>404</div>;
@@ -101,18 +102,7 @@ const BasicLayout = () => {
           </React.Suspense>
         </Content>
         <Footer style={{ padding: 0 }}>
-          <GlobalFooter
-            copyright={(
-              <>
-                Copyright
-                {' '}
-                by
-                {' '}
-                2019
-                yupeilin
-              </>
-            )}
-          />
+          <GlobalFooter />
         </Footer>
       </Layout>
     </Layout>

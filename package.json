@@ -22,7 +22,7 @@
   "author": "yupeilin",
   "license": "MIT",
   "dependencies": {
-    "antd": "^4.0.0-rc.0",
+    "antd": "^4.0.0",
     "connected-react-router": "^6.4.0",
     "dayjs": "^1.8.17",
     "history": "^4.9.0",

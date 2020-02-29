@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import { put } from 'redux-saga/effects';
+import { put, delay } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { setAuthority } from '@/util/authority';
 
@@ -8,6 +8,15 @@ export default {
     const { username, password } = payload;
     if ((username === 'admin' && password === '888888') || (username === 'guest' && password === 'guest')) {
       const authority = username;
+      yield put({
+        type: 'login/setState',
+        payload: { loading: true },
+      });
+      yield delay(1000);
+      yield put({
+        type: 'login/setState',
+        payload: { loading: false },
+      });
       setAuthority(authority);
       yield put(push('/'));
       message.success('登录成功');
