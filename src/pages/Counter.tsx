@@ -21,14 +21,21 @@ function Counter() {
   }
   return (
     <Card>
-      <Button style={{ marginRight: 10 }} onClick={handleDecrement}>减一</Button>
+      <Button style={{ marginRight: 10 }} onClick={handleDecrement}>
+        减一
+      </Button>
       <span>{count}</span>
-      <Button style={{ marginLeft: 10 }} onClick={handleIncrement}>加一</Button>
+      <Button style={{ marginLeft: 10 }} onClick={handleIncrement}>
+        加一
+      </Button>
       <br />
       <Button style={{ marginTop: 10 }} onClick={handleAsyncDecrement}>
         1秒后减一
       </Button>
-      <Button style={{ marginTop: 10, marginLeft: 10 }} onClick={handleAsyncIncrement}>
+      <Button
+        style={{ marginTop: 10, marginLeft: 10 }}
+        onClick={handleAsyncIncrement}
+      >
         1秒后加一
       </Button>
     </Card>

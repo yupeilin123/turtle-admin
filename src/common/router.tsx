@@ -1,3 +1,10 @@
+import * as React from 'react';
+import {
+  SlackOutlined,
+  HeatMapOutlined,
+  SlackSquareOutlined,
+} from '@ant-design/icons';
+
 import BasicLayout from '../layouts/BasicLayout';
 import Counter from '../pages/Counter';
 import Guest from '../pages/Guest';
@@ -5,33 +12,25 @@ import Admin from '../pages/Admin';
 
 const routerMap = {
   '/': {
-    // name: String
-    // icon: Sting
-    // authority: String | Array
-    // hidden: Boolean
     exact: true,
-    // component: getDynamicComponent(layoutImport('BasicLayout')),
     component: BasicLayout,
     children: {
       '/counter': {
         name: 'counter',
-        icon: 'form',
+        icon: <SlackOutlined />,
         component: Counter,
-        // component: getDynamicComponent(routerImport('Counter')),
       },
       '/guest': {
         name: 'guest',
-        icon: 'star-o',
+        icon: <HeatMapOutlined />,
         authority: 'guest',
         component: Guest,
-        // component: getDynamicComponent(routerImport('Guest')),
       },
       '/admin': {
         name: 'admin',
-        icon: 'heart-o',
+        icon: <SlackSquareOutlined />,
         authority: 'admin',
         component: Admin,
-        // component: getDynamicComponent(routerImport('Admin')),
       },
     },
   },

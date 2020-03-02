@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Layout, Icon } from 'antd';
+import { Layout } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
 import GlobalHeader from '@/components/GlobalHeader';
 import GlobalFooter from '@/components/GlobalFooter';
 import SiderMenu from '@/components/SiderMenu';
@@ -18,7 +19,7 @@ const avatarMenu = [
   {
     title: '退出登录',
     key: 'logout',
-    icon: 'logout',
+    icon: <LogoutOutlined />,
   },
 ];
 const siderTitle = 'turtle admin';
@@ -84,17 +85,7 @@ const BasicLayout = () => {
           </Switch>
         </Content>
         <Footer style={{ padding: 0 }}>
-          <GlobalFooter
-            copyright={(
-              <>
-                Copyright
-                {' '}
-                <Icon type='copyright' />
-                {' '}
-              2019 yupeilin
-              </>
-            )}
-          />
+          <GlobalFooter />
         </Footer>
       </Layout>
     </Layout>

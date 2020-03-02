@@ -1,30 +1,28 @@
 import React from 'react';
-import {
-  Icon, Avatar, Menu, Dropdown,
-} from 'antd';
+import { Avatar, Menu, Dropdown } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 // import styles from './index.less';
 const styles = require('./index.less');
 
 interface AvatarMenuType {
-  key: string,
-  disabled?: boolean,
-  icon?: string,
-  title: string
+  key: string;
+  disabled?: boolean;
+  icon?: React.ReactNode;
+  title: string;
 }
 
 interface CurrentUserType {
-  name: string
+  name: string;
 }
 
 interface Props {
-  collapsed: boolean,
-  avatarMenu: Array<AvatarMenuType>,
-  onClickAvatarMenu: any,
-  onCollapseMenu: () => void,
-  logo: string,
-  currentUser: CurrentUserType
+  collapsed: boolean;
+  avatarMenu: Array<AvatarMenuType>;
+  onClickAvatarMenu: any;
+  onCollapseMenu: () => void;
+  logo: string;
+  currentUser: CurrentUserType;
 }
-
 
 const GlobalHeader = (props: Props) => {
   const {
@@ -39,7 +37,7 @@ const GlobalHeader = (props: Props) => {
     <Menu className={styles.menu} onClick={onClickAvatarMenu}>
       {avatarMenu.map(n => (
         <Menu.Item key={n.key} disabled={n.disabled || false}>
-          {n.icon && <Icon type={n.icon} />}
+          {n.icon}
           <span style={{ paddingLeft: 5 }}>{n.title}</span>
         </Menu.Item>
       ))}
@@ -47,11 +45,9 @@ const GlobalHeader = (props: Props) => {
   );
   return (
     <div className={styles.header}>
-      <Icon
-        className={styles.trigger}
-        type={collapsed ? 'menu-unfold' : 'menu-fold'}
-        onClick={onCollapseMenu}
-      />
+      <div onClick={onCollapseMenu} className={styles.trigger}>
+        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+      </div>
       <div className={styles.right}>
         <Dropdown overlay={menu} placement='bottomRight'>
           <span className={styles.avatar}>

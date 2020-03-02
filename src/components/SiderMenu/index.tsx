@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { getAuthority } from '@/util/authority';
 // import styles from './index.less';
@@ -9,23 +9,23 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 interface SiderMenuProps {
-  collapsed: boolean,
-  menuData: Array<number>,
-  logo: string,
-  siderTitle: string,
+  collapsed: boolean;
+  menuData: Array<number>;
+  logo: string;
+  siderTitle: string;
 }
 
 interface SiderMenuState {
-  openKeys: Array<any>,
-  selectedKeys: Array<any>,
+  openKeys: Array<any>;
+  selectedKeys: Array<any>;
 }
 
 interface MenuItemTypes {
-  path: string,
-  icon?: string,
-  name?: string,
-  children: Array<any>,
-  authority?: string,
+  path: string;
+  icon?: React.ReactNode;
+  name?: string;
+  children: Array<any>;
+  authority?: string;
 }
 
 function searchOpenSubMenu(path: string) {
@@ -64,7 +64,7 @@ const SiderMenu = (props: SiderMenuProps) => {
   const handleCreateMenuItem = (item: MenuItemTypes) => (
     <Menu.Item key={item.path}>
       <Link to={item.path} replace={item.path === window.location.pathname}>
-        {item.icon && <Icon type={item.icon} />}
+        {item.icon}
         <span>{item.name}</span>
       </Link>
     </Menu.Item>
@@ -75,10 +75,10 @@ const SiderMenu = (props: SiderMenuProps) => {
       key={item.path}
       title={(
         <span>
-          {item.icon && <Icon type={item.icon} />}
+          {item.icon}
           <span>{item.name}</span>
         </span>
-        )}
+      )}
     >
       {item.children.map(m => getSubMenuOrMenuItem(m))}
     </SubMenu>
@@ -107,7 +107,13 @@ const SiderMenu = (props: SiderMenuProps) => {
   };
 
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed} className={styles.sider} width='250'>
+    <Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      className={styles.sider}
+      width='250'
+    >
       <div className={styles.logo} key='logo'>
         <Link to='/'>
           <img src={logo} alt='logo' />

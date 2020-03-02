@@ -18,6 +18,9 @@ module.exports = {
     'react/destructuring-assignment': [0],
     'react/state-in-constructor': [0],
     'import/no-unresolved': [0],
+    'jsx-a11y/click-events-have-key-events': [0],
+    'jsx-a11y/no-static-element-interactions': [0],
+    'import/no-extraneous-dependencies': [0],
     '@typescript-eslint/no-use-before-define': [0],
   }
 }

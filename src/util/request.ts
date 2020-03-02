@@ -30,5 +30,6 @@ export default function request(url: string, options: OptionsType) {
         return response.text();
       }
       return response.json();
-    }).catch((e: any) => e);
+    })
+    .catch((e: any) => e);
 }
