@@ -73,7 +73,7 @@ const BasicLayout = () => {
         <Content style={{ margin: '20px 24px 0', height: '100%' }}>
           <Switch>
             <Redirect exact from='/' to={redirectData(routerComp)} />
-            {routerComp.map(item => (
+            {routerComp.map((item) => (
               <Route
                 key={item.key}
                 path={item.path}

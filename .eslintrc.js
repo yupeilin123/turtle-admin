@@ -2,25 +2,31 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  extends: ['airbnb-typescript'],
+  extends: ['airbnb'],
   env: {
     browser: true,
     node: true,
     es6: true,
   },
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: "module",
+    ecmaFeatures: {
+      modules: true
+    },
+    project: './tsconfig.json'
+  },
   rules: {
-    'max-len': ['error', { code: 140 }],
-    'arrow-parens': ['error', 'as-needed'],
-    'no-console': [0],
-    'jsx-quotes': ['error', 'prefer-single'],
+    'max-len': [0, { code: 140 }],
+    'jsx-quotes': [1, 'prefer-single'],
     'react/jsx-props-no-spreading': [0],
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx','js'] }],
-    'react/destructuring-assignment': [0],
-    'react/state-in-constructor': [0],
     'import/no-unresolved': [0],
+    'no-use-before-define': [0],
+    'import/no-extraneous-dependencies': [0],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.js'] }],
     'jsx-a11y/click-events-have-key-events': [0],
     'jsx-a11y/no-static-element-interactions': [0],
-    'import/no-extraneous-dependencies': [0],
-    '@typescript-eslint/no-use-before-define': [0],
+    '@typescript-eslint/quotes': [0, 'single'],
+    '@typescript-eslint/semi': [0],
   }
 }

@@ -7,8 +7,8 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --config scripts/start.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "analyze": "cross-env ANALYZE=true node scripts/build.js",
-    "lint": "eslint --ext .js src",
-    "lint:fix": "eslint --fix --ext .js src"
+    "lint": "eslint --ext .ts,.tsx src",
+    "lint:fix": "eslint --fix --ext .tsx,.ts src"
   },
   "keywords": [
     "ant-design",
@@ -45,6 +45,7 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-router-dom": "^4.3.1",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.22.0",
     "autoprefixer": "^9.4.7",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
@@ -54,7 +55,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "eslint": "^6.6.0",
-    "eslint-config-airbnb-typescript": "^7.0.0",
+    "eslint-config-airbnb": "^18.0.1",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-import": "^2.16.0",

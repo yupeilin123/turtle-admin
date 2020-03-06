@@ -35,7 +35,7 @@ const GlobalHeader = (props: Props) => {
   } = props;
   const menu = (
     <Menu className={styles.menu} onClick={onClickAvatarMenu}>
-      {avatarMenu.map(n => (
+      {avatarMenu.map((n) => (
         <Menu.Item key={n.key} disabled={n.disabled || false}>
           {n.icon}
           <span style={{ paddingLeft: 5 }}>{n.title}</span>
@@ -46,7 +46,7 @@ const GlobalHeader = (props: Props) => {
   return (
     <div className={styles.header}>
       <div onClick={onCollapseMenu} className={styles.trigger}>
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </div>
       <div className={styles.right}>
         <Dropdown overlay={menu} placement='bottomRight'>

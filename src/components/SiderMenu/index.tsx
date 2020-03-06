@@ -80,7 +80,7 @@ const SiderMenu = (props: SiderMenuProps) => {
         </span>
       )}
     >
-      {item.children.map(m => getSubMenuOrMenuItem(m))}
+      {item.children.map((m) => getSubMenuOrMenuItem(m))}
     </SubMenu>
   );
 
@@ -96,10 +96,10 @@ const SiderMenu = (props: SiderMenuProps) => {
       return [];
     }
     return data
-      .filter(item => item.name && !item.hidden)
-      .filter(item => handleFilterAuthorityMenu(item))
-      .map(item => getSubMenuOrMenuItem(item))
-      .filter(item => item);
+      .filter((item) => item.name && !item.hidden)
+      .filter((item) => handleFilterAuthorityMenu(item))
+      .map((item) => getSubMenuOrMenuItem(item))
+      .filter((item) => item);
   };
 
   const handleOpenSubMenu = (data: any[]) => {

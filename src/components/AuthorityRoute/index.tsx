@@ -30,7 +30,7 @@ function BasicLayoutRender({
 const AuthorityRoute = (props: Props) => {
   const { authority } = props;
   if (Array.isArray(authority)) {
-    if (authority.some(_ => _ === getAuthority())) {
+    if (authority.some((_) => _ === getAuthority())) {
       return BasicLayoutRender({ ...props, isAuthority: true });
     }
     return BasicLayoutRender({ ...props, isAuthority: false });
