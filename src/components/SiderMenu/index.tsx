@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { getAuthority } from '@/util/authority';
-// import styles from './index.less';
-const styles = require('./index.less');
+import styles from './index.less';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;

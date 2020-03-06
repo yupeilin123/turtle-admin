@@ -2,9 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 import GlobalFooter from '@/components/GlobalFooter';
 import Login from '@/pages/Login';
-
-// import styles from './LoginLayout.less';
-const styles = require('./LoginLayout.less');
+import styles from './LoginLayout.less';
 
 export default () => (
   <div className={styles.container}>

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Avatar, Menu, Dropdown } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-// import styles from './index.less';
-const styles = require('./index.less');
+import styles from './index.less';
 
 interface AvatarMenuType {
   key: string;

@@ -4,11 +4,9 @@ import {
 } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { setAuthority } from '@/util/authority';
+import logo from '@/assets/logo.png';
+import styles from './index.less';
 
-const styles = require('./index.less');
-const logo = require('@/assets/logo.png');
-// import logo from '@/assets/logo.png';
-// import * as styles from './index.less';
 const FormItem = Form.Item;
 
 interface LoginValue {

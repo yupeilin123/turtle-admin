@@ -7,8 +7,7 @@ import GlobalFooter from '@/components/GlobalFooter';
 import SiderMenu from '@/components/SiderMenu';
 import routerData from '@/common/router';
 import { getMenuData, getRouterData } from '../util/utils';
-// import logo from '@/assets/logo.png';
-const logo = require('@/assets/logo.png');
+import logo from '@/assets/logo.png';
 
 interface AvatatMenuType {
   key: string;
